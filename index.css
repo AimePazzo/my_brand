@@ -438,7 +438,7 @@ a {
 
 .skills_section {
     width: 800px;
-    height: 400px;
+    height: 407px;
     padding: 0 3rem;
     background-color: rgba(252, 252, 252, 0.614);
     display: flex;
@@ -1256,7 +1256,7 @@ body.dark-theme {
     background-color: hsla(14, 70%, 50%, .2);
 }
 
-.dark-theme .main__button button{
+.dark-theme :is(.main__button button,.btn){
     background-color: var(--first-color) !important;
 }
 

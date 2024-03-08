@@ -1198,7 +1198,7 @@ footer {
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 4rem;
+    top: 2rem;
     right: 0rem;
     transition: width .2s;
 }
@@ -1241,7 +1241,9 @@ body.dark-theme {
     background-color: var(--body-color);
     box-shadow: 0 1px 12px hsl(0, 0%, 0%, .6);
 }
-
+.dark-theme :is(.header .cont){
+    background-color: var(--container-color) !important;
+}
 .dark-theme .nav__logo svg ellipse {
     fill: var(--first-color);
     /* Change to the desired color */
@@ -1462,7 +1464,9 @@ body.dark-theme {
     #nav-close {
         cursor: pointer;
     }
-
+    .theme{
+        top: 5rem;
+    }
     .show {
         top: -15rem;
     }

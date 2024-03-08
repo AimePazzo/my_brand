@@ -1254,6 +1254,10 @@ body.dark-theme {
     background-color: hsla(14, 70%, 50%, .2);
 }
 
+.dark-theme .main__button button{
+    background-color: var(--first-color) !important;
+}
+
 .dark-theme :is(.main__arrow, .main__line) {
     color: var(--body-color);
 }

@@ -71,15 +71,35 @@ themeButton.addEventListener('click', () => {
 })
   
 
-const sr = ScrollReveal({
-  origin:'top',
-  distance:"60px",
-  duration:2500,
-  delay:400,
-  // reset:true // Animation repeat
-})
-sr.reveal(`.main__img, .about__image, .contact__mail`,{origin:'right'})
-sr.reveal(`.home__name, .home__info,
-          .about__comtainer ,.section__title-1, .about__info,
-          .contact__social, .contact__data`,{origin:'left'})
-sr.reveal(`.services__card, .project__card`,{interval:100})
+const contactForm = document.getElementById("contact-form");
+const sendEmail = (e)=>{
+  e.preventDefault();
+  emailjs.sendForm('service_kzutdjf', 'template_h8w87eq', '#contact-form', 'mbdQfTjlWxjvdh2ij').then(() => {
+    Toastify({
+      text: 'Message sent successfully ✅',
+      position: 'right',
+      duration: 3000, // milliseconds
+      style: {
+          width:"200px",
+          background: '#fff',
+          color: '#06ba18',
+      }
+  }).showToast();
+      contactForm.reset();
+  }).catch(() => {
+    Toastify({
+      text: 'Message not sent (service error) ❌',
+      position: 'top-right',
+      duration: 3000, // milliseconds
+      style: {
+        width:"200px",
+          background: '#fff',
+          color: '#eb4034',
+          
+      }
+  }).showToast();
+      contactForm.reset();
+  });
+
+}
+contactForm.addEventListener('submit', sendEmail);

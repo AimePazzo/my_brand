@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Actor&family=Koulen&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="index.css">
     <title>My brand</title>
 </head>
@@ -89,7 +90,6 @@
                             <textarea name="user_message" id="message" class="contact__input" required placeholder="Message"></textarea>
                             <label for="Message" class="contact__label">Message</label>
                         </div>
-                        <p class="contact__message" id="contact-message"></p>
                         <button class="contact__button button">
                             <i class="ri-send-plane-fill"></i> Send Message
                         </button>
@@ -139,12 +139,13 @@
             </footer>
         </div>
     </div>
-    <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="index.js"></script>
   <script>
-    // Initialize AOS with options
     AOS.init({
-      once: true // Trigger animations only once
+      once: true
     });
   </script>
 </body>

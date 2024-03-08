@@ -70,3 +70,16 @@ themeButton.addEventListener('click', () => {
     localStorage.setItem('selected-icon', getCurrentIcon())
 })
   
+
+const sr = ScrollReveal({
+  origin:'top',
+  distance:"60px",
+  duration:2500,
+  delay:400,
+  // reset:true // Animation repeat
+})
+sr.reveal(`.main__img, .about__image, .contact__mail`,{origin:'right'})
+sr.reveal(`.home__name, .home__info,
+          .about__comtainer ,.section__title-1, .about__info,
+          .contact__social, .contact__data`,{origin:'left'})
+sr.reveal(`.services__card, .project__card`,{interval:100})

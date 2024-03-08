@@ -18,6 +18,7 @@
       href="https://fonts.googleapis.com/css2?family=Actor&family=Koulen&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
     <link rel="stylesheet" href="index.css" />
     <title>My brand</title>
   </head>
@@ -113,7 +114,7 @@
       </div>
 
       <div class="about">
-        <div class="about__left">
+        <div class="about__left animated-element" data-aos="fade-right" data-aos-duration="2000">
           <div class="about__img">
             <img src="./img/IMG_2949.jpg" alt="" />
             <div class="about__shadow"></div>
@@ -122,14 +123,14 @@
               <div class="geomatric-box"></div>
           </div>
         </div>
-        <div class="about__right">
+        <div class="about__right animated-element" data-aos="fade-down" data-aos-duration="1000">
           <h1>About Me</h1>
           <p>
             Passionate about creating Web Pages with UI/UX User Interface,I have
             years of experience and many clients are happy with the projects
             carried out.
           </p>
-          <button class="btn">
+          <button class="btn animated-element" data-aos="fade-up" data-aos-duration="3000">
             <i class="ri-phone-fill"></i>
             <a href="contact.html">Contact Me</a>
           </button>
@@ -150,5 +151,12 @@
       </div>
     </div>
     <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // Initialize AOS with options
+    AOS.init({
+      once: true // Trigger animations only once
+    });
+  </script>
   </body>
 </html>

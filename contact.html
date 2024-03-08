@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Actor&family=Koulen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
     <link rel="stylesheet" href="index.css">
     <title>My brand</title>
 </head>
@@ -49,7 +50,7 @@
         </div>
         <div class="contact">
             <div class="contact__container">
-                <div class="contact__data">
+                <div class="contact__data animated-element" data-aos="fade-right" data-aos-duration="1000">
                     <h2 class="section__title-2">
                         <span>Contact Me.</span>
                     </h2>
@@ -64,7 +65,7 @@
                     </p>
                     <div class="geomatric-box"></div>
                 </div>
-                <div class="contact__mail">
+                <div class="contact__mail animated-element" data-aos="fade-left" data-aos-duration="2000">
                     <h2 class="contact__title">
                         Send Me A Message
                     </h2>
@@ -94,7 +95,7 @@
                         </button>
                     </form>
                 </div>
-                <div class="contact__social">
+                <div class="contact__social animated-element" data-aos="fade-down" data-aos-duration="2000">
                     <svg width="53" height="68" viewBox="0 0 53 68" fill="none" xmlns="http://www.w3.org/2000/svg" class="contact__social-arrow">
                         <path d="M1.00001 0.999988C6.91304 1.98551 26.6061 10.9359 27.0417 20.0833C27.223 23.8896 25.316 29.2172 22.1667 31.6666C15.4036 36.9267 4.17815 29.9088 13.5 23.5C18.7279 19.9058 26.1975 22.8211 31.4583 24.9583C38.5 28.5 38.5 28.5 43.3334 35.25C49 44.5 48.6119 57.8059 47.5 57.25" stroke="#023047" stroke-width="2" stroke-linecap="round"/>
                         <path d="M49.75 64C48.6261 63.3881 40.1729 58.4261 41.125 59.1666C42.3712 60.136 43.7571 61.0071 44.875 62.125C46.1976 63.4476 47.8331 64.4164 49 65.875C50.0239 67.1549 52 58.7612 52 57.25" stroke="#023047" stroke-width="2" stroke-linecap="round"/>
@@ -139,5 +140,12 @@
         </div>
     </div>
     <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // Initialize AOS with options
+    AOS.init({
+      once: true // Trigger animations only once
+    });
+  </script>
 </body>
 </html>

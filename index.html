@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Actor&family=Koulen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
     <link rel="stylesheet" href="index.css">
     <title>My brand</title>
 </head>
@@ -49,7 +50,7 @@
             </div>
         </div>
         <div class="main">
-            <div class="main__left">
+            <div class="main__left animated-element" data-aos="fade-down" data-aos-duration="1000">
                 <h2>I'M Patrick</h2>
                 <div class="text">
                     <p class="desc">
@@ -59,7 +60,7 @@
                         quality work.
                     </p>
                 </div>
-                <div class="main__button">
+                <div class="main__button animated-element" data-aos="fade-up" data-aos-duration="3000">
                     <button><i class="ri-thumb-up-fill"></i><a href="./contact.html">Hire Me</a></button>
                     <button><i class="ri-download-2-line"></i><p>Download CV</p></button>
                 </div>
@@ -67,7 +68,7 @@
             </div>
            
             <div class="main__right">
-                <div class="main__img">
+                <div class="main__img animated-element" data-aos="fade-up" data-aos-duration="1000">
                     <img src="img/IMG_2949.jpg" alt="" class="profile">
                     <div class="shadow"></div>
                     <svg width="53" height="68" viewBox="0 0 53 68" fill="none" xmlns="http://www.w3.org/2000/svg" class="main__arrow">
@@ -79,7 +80,7 @@
                     </svg>
                     <div class="geomatric-box"></div>
                 </div>
-                <div class="home__icon">
+                <div class="home__icon animated-element" data-aos="fade-left" data-aos-duration="3000">
                     <i class="ri-github-line"></i>
                     <i class="ri-twitter-line"></i>
                     <i class="ri-linkedin-box-line"></i>
@@ -103,5 +104,13 @@
         </div>
     </div>
     <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // Initialize AOS with options
+    AOS.init({
+      once: true // Trigger animations only once
+    });
+  </script>
+
 </body>
 </html>

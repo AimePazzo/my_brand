@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Actor&family=Koulen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
     <link rel="stylesheet" href="index.css">
     <title>My brand</title>
 </head>
@@ -48,9 +49,9 @@
         </div>
         </div>
         <div class="project">
-            <h1>Project.</h1>
+            <h1 class="animated-element" data-aos="fade-down" data-aos-duration="1000">Project.</h1>
             <div class="project__items">
-                <article class="project__card">
+                <article class="project__card animated-element" data-aos="fade-down" data-aos-duration="1000">
                     <div class="project__image">
                         <img src="./img/project-4.jpg" alt="image" class="project__img">
 
@@ -74,7 +75,7 @@
                         </a>
                     </div>
                 </article>
-                <article class="project__card">
+                <article class="project__card animated-element" data-aos="fade-down" data-aos-duration="1000">
                     <div class="project__image">
                         <img src="img/project-1.jpg" alt="image" class="project__img">
 
@@ -100,7 +101,7 @@
                         </a>
                     </div>
                 </article>
-                <article class="project__card">
+                <article class="project__card animated-element" data-aos="fade-down" data-aos-duration="1000">
                     <div class="project__image">
                         <img src="img/project-1.jpg" alt="image" class="project__img">
 
@@ -126,7 +127,7 @@
                         </a>
                     </div>
                 </article>
-                <article class="project__card">
+                <article class="project__card animated-element" data-aos="fade-down" data-aos-duration="1000">
                     <div class="project__image">
                         <img src="img/project-1.jpg" alt="image" class="project__img">
 
@@ -169,5 +170,12 @@
         </div>
     </div>
     <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // Initialize AOS with options
+    AOS.init({
+      once: true // Trigger animations only once
+    });
+  </script>
 </body>
 </html>

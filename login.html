@@ -29,7 +29,10 @@
       rel="stylesheet"
       href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
     />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+    />
     <link rel="stylesheet" href="index.css" />
     <title>My Portfolio - Login</title>
   </head>
@@ -105,7 +108,15 @@
                 >
               </ul>
               <ul>
-                <button id="login-button" class="login__active"><a href="./login.html" target="_parent" rel="noopener noreferrer" id="login__link">login</a></button>
+                <button id="login-button" class="login__active">
+                  <a
+                    href="./login.html"
+                    target="_parent"
+                    rel="noopener noreferrer"
+                    id="login__link"
+                    >login</a
+                  >
+                </button>
               </ul>
             </li>
             <div class="nav__close" id="nav-close">
@@ -120,37 +131,44 @@
           </div>
         </div>
         <div class="theme">
-          <i class="ri-moon-line change-theme " id="theme-button"></i>
-      </div>
+          <i class="ri-moon-line change-theme" id="theme-button"></i>
+        </div>
       </div>
 
       <div class="login">
         <div class="login__container">
-          <div class="login__content animated-element" data-aos="fade-down" data-aos-duration="1000">
+          <div class="login__content">
             <h1>Login</h1>
             <div class="login__form">
-              <form action="">
+              <form action="" id="form">
                 <div class="login__group">
-                  <label for="Email">Email</label><br />
+                  <label for="email">Email</label><br />
+
                   <input
                     type="text"
                     name="Email"
-                    id=""
+                    id="email"
+                    value=""
                     placeholder="example@gmail.com"
                   />
+
+                  <div class="error"></div>
                 </div>
                 <div class="login__group">
-                  <label for="Email">Password</label><br />
+                  <label for="password">Password</label><br />
                   <input
-                    type="text"
-                    name="Email"
-                    id=""
+                    type="password"
+                    name="password"
+                    id="password"
+                    value=""
                     placeholder="At least 8 characters"
                   />
+
+                  <div class="error"></div>
                 </div>
                 <p class="link"><a href="">Forgot Password?</a></p>
                 <br />
-                <button type="submit">Sign in</button><br />
+                <button type="submit" id="submit">Sign in</button><br />
                 <p class="lines">or</p>
                 <div class="login__button">
                   <button type="button">
@@ -168,25 +186,124 @@
                 </div>
                 <p class="signup">
                   <span>Don't you have an account?</span
-                  ><a href="./sigin.html">SignUp</a>
+                  ><a href="$" id="signup-link">SignUp</a>
                 </p>
               </form>
             </div>
           </div>
-          <div class="login__img animated-element" data-aos="fade-up" data-aos-duration="1000">
+          <div class="login__img">
             <img src="./img/sammy-line-41.png" alt="" />
+          </div>
+        </div>
+        <div class="signup-popup" id="signup-popup">
+          <div class="signup-form">
+            <h2>Sign Up</h2>
+            <form action="" id="signupForm">
+              <div class="sigup__main">
+                <div class="signup__left">
+                  <div class="login__group">
+                    <label for="firstname">First Name</label><br />
+                    <input
+                      type="text"
+                      name="First Name"
+                      id="First__Name"
+                      value=""
+                      placeholder="First Name"
+                    />
+
+                    <div class="error"></div>
+                  </div>
+                  <div class="login__group">
+                    <label for="lastname">Last Name</label><br />
+                    <input
+                      type="text"
+                      name="last__name"
+                      id="last__name"
+                      value=""
+                      placeholder="Last Name"
+                    />
+
+                    <div class="error"></div>
+                  </div>
+                  <div class="login__group">
+                    <label for="email">Email</label><br />
+                    <input
+                      type="text"
+                      name="email"
+                      id="signup__email"
+                      value=""
+                      placeholder="example@12gmail.com"
+                    />
+
+                    <div class="error"></div>
+                  </div>
+                </div>
+                <div class="signup__right">
+                  <div class="login__group">
+                    <label for="password">Password</label><br />
+                    <input
+                      type="password"
+                      name="password"
+                      id="password1"
+                      value=""
+                      placeholder="At least 8 characters"
+                    />
+
+                    <div class="error"></div>
+                  </div>
+                  <div class="login__group">
+                    <label for="password2">Conform Password</label><br />
+                    <input
+                      type="password"
+                      name="password2"
+                      id="password2"
+                      value=""
+                      placeholder="At least 8 characters"
+                    />
+
+                    <div class="error"></div>
+                  </div>
+                  <div class="signup__button">
+                    <button type="button">
+                      <img
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEkUlEQVR4nO2Zb0wbZRzHn3taesUtRpOJYbo/DoQM5c/GMgryzxkYxbGBiQsbNBCEFGaIY8zCCuaUMSiQAQMGQWAgcSY2GeuNuzpc8NqNvRoCItE3841Dthj3ToNzbX+mVRBI197Zo2VJv8n3XZ+nn89dn6dPrwj5448/HgcoJIWqgGIoxywU4HuQTfwJSsIKBxBAKgJIQzbIJhZBhX+BE/g6VAUU2ccgXwc0UgWU4tvwNmGBJASCqiQsoMa3QRsQ433wOlk4qPEsvCkQ2llTEUAxnoEaFOIdeA3RCumEzWPwtT2IrHCK0K0f+HkUCMX4B9HBk9b0PTwNFJKJC9+NngcVfrDu8En/toJoFw9+EMnhOPGr1+DLCE40eIeAGn/vPXgsMvyHRIfgrbEMT0IlroUmaQpQaAtQKAjOSN6C05hy7Db21zgbW4pN4sI3kyGQQVh5g5+W9PJZfEChZ+ADydAqkVKR4R1vVIHv8IIvwPNwDr0oeP4aFAJ5+P76wJvl22CcfAQaCUCyC/gSPAV6JEEbLWAmdWAmwdHeAIB0wvmV35DweiQBs2x+WcDeURmACv8Hn0lYoAK9hDZiwCSPXwW/VI4E0En/ObuclPSjjRowybROBZY6FPAAyhGJNmrATF5xKWCSdQiZL1gzC2I0XDthO9rUd9e9gImccynAkRm+EAjWzMIbddcW+Qg8dCMQ6iuB3TW3rHwEHrkWQJt9JbCjehKeaoHtVd+C5x+hm7IwXwns1t60Pd2L+JNRHovYTI642UY7fSVwRDc8z0NAduZJ8A+5Z6Geif/jvF4RiEROy3D+puiPvrG4Eii/0DjqXoALVDiDnx0PBhWthENXs6HDGHtJbIGTnfX97u6Arq/iuHsBQBjMsntL4DYzCfRYOGQbDjvg7c2jlZaL11/bJhZ8W496Z2SNyeoK/vVas4XiKH5P88BENtrhfzdthrNMwjL4ylaPJi9wXIrHjwcpjpIeafxswd3VL2lrm+A9KXCBL98df+GvEjrdKfxSP2YTZjyRoDhKmt/SM+d2/6+egsbuylhBkzcwihlX8CvvRP/X4VuFwvfeiNhe1lX3E5/d51hz75zQ+RE9FvZKPq208pHIp5WWzq/2DlCDKXJ38w6PRW1qZ/b15RmU1pyRHDja2uH2FEp9ekrQl+dyutmY1iweAitFGljFdJdxL6VnIw5cGdsVdJkL2zJgjEq8aNxTV8ckTNpfs3JM1kgOFPZQsLXqO6cC77c3dSNPomPjpvkKeNKiwXLYWX1nFfy7TQM/Ik+j10fINHTqfW9IFH5RCJG1Jgd8ev2Xv53o6hJ0cHxiOG7HczVM4oI3JI7pc0HVemGeGq4MEgV+hYT8LBM/K2RN/J+eYxXTRmPo+v3m7jNGNecaMq2iX3lDprWXjWlG3sgwvSe0gY2beseQ5TF4ztXDjqt++caru5C3MzQWGdvM7L9VZDj4WCh4AZ3xuJGJm/icifb+n3xrowck6WeiC1uN+0a1TOLPajptUWVQWu13yH4IzDVk2tSGtMWqa8nzLex+ts8YU2Afg/zxxx/kaf4GzSVnCicBYF0AAAAASUVORK5CYII="
+                      />
+                      <a href="">Login With Google</a>
+                    </button>
+                    <button type="button">
+                      <img
+                        src="data:image/png;base64,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"
+                      />
+                      <a href="">Login With GitHub</a>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" id="submit2">SignUp</button><br />
+            </form>
+
+            <p>
+              Already have an account? <a href="#" id="login-link">Login</a>
+            </p>
           </div>
         </div>
       </div>
       <div class="footer">
         <footer>
           <div class="footer__icon">
-            <a href="https://github.com/AimePazzo"><i class="ri-github-line"></i></a>
-            <a href="https://twitter.com/Amie_patric17"><i class="ri-twitter-line"></i></a>
-            <a href="www.linkedin.com/in/ndagijimana-patrick-393ba5226"><i class="ri-linkedin-box-line"></i></a>
-            <a href="https://www.instagram.com/aimepatrick134/"><i class="ri-instagram-line"></i></a>
-            
-        </div>
+            <a href="https://github.com/AimePazzo"
+              ><i class="ri-github-line"></i
+            ></a>
+            <a href="https://twitter.com/Amie_patric17"
+              ><i class="ri-twitter-line"></i
+            ></a>
+            <a href="www.linkedin.com/in/ndagijimana-patrick-393ba5226"
+              ><i class="ri-linkedin-box-line"></i
+            ></a>
+            <a href="https://www.instagram.com/aimepatrick134/"
+              ><i class="ri-instagram-line"></i
+            ></a>
+          </div>
           <div class="footer__rights">
             <p>&copy; All Rights Reserved By Aime Patrick</p>
           </div>
@@ -195,11 +312,154 @@
     </div>
     <script src="index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    // Initialize AOS with options
-    AOS.init({
-      once: true // Trigger animations only once
-    });
-  </script>
+    <script>
+      // Initialize AOS with options
+      AOS.init({
+        once: true, // Trigger animations only once
+      });
+    </script>
+    <script>
+      const form = document.getElementById("form");
+      const signupForm = document.getElementById("signupForm");
+      const email = document.getElementById("email");
+      const password = document.getElementById("password");
+
+      const isError = (element, message) => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector(".error");
+
+        errorDisplay.innerText = message;
+        inputControl.classList.add("error");
+        inputControl.classList.remove("success");
+      };
+
+      const isSuccess = (element) => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector(".error");
+
+        errorDisplay.innerText = "";
+        inputControl.classList.add("success");
+        inputControl.classList.remove("error");
+      };
+
+      const isEmail = (email) => {
+        const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return re.test(String(email).toLowerCase());
+      };
+
+      const validateLoginInputs = () => {
+        const emailValue = email.value.trim();
+        const passwordValue = password.value.trim();
+        if (emailValue === "") {
+          isError(email, "Email is required");
+        } else if (!isEmail(emailValue)) {
+          isError(email, "Provide a valid email address");
+        } else {
+          isSuccess(email);
+        }
+
+        if (passwordValue === "") {
+          isError(password, "Password is required");
+        } else if (passwordValue.length < 8) {
+          isError(password, "Password must be at least 8 character.");
+        } else {
+          isSuccess(password);
+        }
+      };
+
+      // SIGNUP VALIDATION
+      const signupFirst = document.getElementById("First__Name");
+      const signupLast = document.getElementById("last__name");
+      const signupEmail = document.getElementById("signup__email");
+      const signupPassword = document.getElementById("password1");
+      const signupPassword2 = document.getElementById("password2");
+
+      const validateSignup = () => {
+        const firstNameValue = signupFirst.value.trim();
+        const lastnameValue = signupLast.value.trim();
+        const SignupEmailValue = signupEmail.value.trim();
+        const passwordValue = signupPassword.value.trim();
+        const confirmPasswordValue = signupPassword2.value.trim();
+
+        let isValid = true;
+
+        if (firstNameValue === "") {
+          isError(signupFirst, "Please provide your first name");
+          isValid = false;
+        } else {
+          isSuccess(signupFirst);
+        }
+
+        if (lastnameValue === "") {
+          isError(signupLast, "Last Name is Required");
+          isValid = false;
+        } else {
+          isSuccess(signupLast);
+        }
+
+        if (SignupEmailValue === "") {
+          setError(signupEmail, "Email is required");
+          isValid = false;
+        } else if (!isEmail(SignupEmailValue)) {
+          setError(signupEmail, "Provide a valid email address");
+          isValid = false;
+        } else {
+          setSuccess(signupEmail);
+        }
+
+        if (passwordValue === "") {
+          setError(signupPassword, "Password is required");
+          isValid = false;
+        } else if (signupPassword.length < 8) {
+          setError(signupPassword, "Password must be at least 8 character.");
+          isValid = false;
+        } else {
+          setSuccess(signupPassword);
+        }
+
+        if (confirmPasswordValue === "") {
+          setError(signupPassword2, "Please confirm your password");
+          isValid = false;
+        } else if (passwordValue !== confirmPasswordValue) {
+          setError(signupPassword2, "Passwords doesn't match");
+          isValid = false;
+        } else {
+          setSuccess(signupPassword2);
+        }
+
+        return isValid;
+      };
+
+      let newUser =[];
+      const handleSubmitSignup = (e) => {
+        const isValid = validateSignup();
+        if (!isValid) {
+          return;
+        }
+        let user = {
+          FirstName: signupFirst.value,
+          LastName: signupLast.value,
+          email: signupEmail.value,
+          password: signupPassword.value,
+        };
+        newUser.push(user);
+        console.log(newUser);
+        localStorage.setItem("UserDate", JSON.stringify(newUser));
+        alert("Your Account created successfully!");
+        resetErrors();
+        e.target.reset();
+      };
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        validateLoginInputs();
+      });
+
+      signupForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        handleSubmitSignup();
+      });
+    </script>
   </body>
 </html>

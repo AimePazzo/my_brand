@@ -997,7 +997,7 @@ a {
     margin-bottom: 3rem;
     width: 85%;
     height: 100%;
-    background-color: #f3f2f2;
+    background-color: #e7e6e6;
     border-radius: 37px;
 }
 
@@ -1006,7 +1006,7 @@ a {
     height: 400px;
 }
 
-.login__content h1 {
+.login__content  h1 , .signup-form h2 {
     text-align: center;
     font-family: actor;
     color: #023047;
@@ -1023,7 +1023,7 @@ a {
     width: 280px;
     height: 40px;
     border-radius: 8px;
-    border: none;
+    border: 2px solid var(--container-color);
     background-color: #c7d6d95d;
     padding-left: 0.4rem;
     margin-bottom: .3rem;
@@ -1042,7 +1042,7 @@ a {
     margin-left: 4rem;
 }
 
-form .link a {
+#form .link a {
     color: #03AFD9;
     font-family: actor;
     font-size: 15px;
@@ -1145,9 +1145,124 @@ button[type=submit]:hover {
     color: #7C7D7E;
 }
 
-.signup a {
+.signup a, #login-link {
     color: #03AFD9;
     font-size: 18px;
+}
+
+
+.signup-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.747);
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-popup.active {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.signup-form {
+    background-color: #e7e6e6;
+    padding: 5rem 20px 20px 20px;
+    border-radius: 37px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 80%;
+    margin: 5.5rem;
+}
+.signup-form p{
+    text-align: center;
+}
+
+.signup-form form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sigup__main{
+    display: flex;
+    gap: 10rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup__button{
+    display: grid;
+    row-gap: 0.3rem;
+}
+
+.signup__button button{
+    display: grid;
+    grid-template-columns: 40px 150px;
+    width: 280px;
+    border: none;
+    background-color: #023047;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    padding-top: .3rem;
+    padding-bottom: .3rem;
+}
+.signup__button button img{
+    width: 20px;
+}
+
+.signup__button button:hover {
+    background-color: #D9D9D9;
+}
+
+.signup__button button:hover a {
+    transition: all ease-out .3s;
+    color: #023047;
+}
+
+.login__group input {
+    outline-style: none;
+}
+.login__group.success input {
+    border-color: #09c372 !important;
+}
+
+.login__group.error input {
+    border-color: #ff3860 !important;
+}
+
+.login__group .error {
+    color: #ff3860;
+    font-size: 9px;
+    height: 13px;
+}
+
+.contact__box input {
+    outline-style: none;
+}
+.contact__box.success .contact__input {
+    border-color: #09c372 ;
+}
+
+
+.contact__box.error .contact__input{
+    border-color: #ff3860;
+}
+
+.contact__box .error {
+    position: absolute;
+    top: 4rem;
+    color: #ff3860 !important;
+    font-size: 9px !important;
+    height: 13px !important;
+}
+.contact__area .error{
+    position: absolute;
+    top: 10.5rem;
 }
 
 /* FOOTER */
@@ -1256,7 +1371,14 @@ body.dark-theme {
     background-color: hsla(14, 70%, 50%, .2);
 }
 
-.dark-theme :is(.main__button button,.btn){
+.dark-theme .login__group input{
+    outline:var(--first-color);
+    color: var(--main-color);
+}
+.dark-theme .login__group.error input{
+    border-color: #ff3860 !important;
+}
+.dark-theme :is(.main__button button, .btn){
     background-color: var(--first-color) !important;
 }
 
@@ -1728,10 +1850,7 @@ body.dark-theme {
         width: 300px;
     }
 
-    .login__group input {
-        outline-style: none;
-    }
-
+    
     .contact {
         margin-top: 4rem;
         height: 100% !important;
@@ -1782,7 +1901,7 @@ body.dark-theme {
         font-size: 1.6rem;
     }
 
-    .contact__mail form {
+    .contact__mail #form {
         padding: 0;
     }
 
@@ -1802,5 +1921,8 @@ body.dark-theme {
         top: 0;
         right: 0;
         height: 5rem;
+    }
+    .contact__box {
+        margin-bottom: 2rem;
     }
 }

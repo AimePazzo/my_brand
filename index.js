@@ -74,15 +74,7 @@ themeButton.addEventListener("click", () => {
 });
 
 
-document.getElementById('signup-link').addEventListener('click', function(e) {
-  e.preventDefault();
-  document.getElementById('signup-popup').classList.add('active');
-});
 
-document.getElementById('login-link').addEventListener('click', function(e) {
-  e.preventDefault();
-  document.getElementById('signup-popup').classList.remove('active');
-})
 
 
 const contactForm = document.getElementById("contact-form");

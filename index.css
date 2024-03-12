@@ -1094,7 +1094,7 @@ button[type=submit]:hover {
 }
 
 .lines::after {
-    right: 1.5rem;
+    right: 1.2rem;
 }
 
 .lines::before {
@@ -1141,7 +1141,7 @@ button[type=submit]:hover {
     font-family: actor;
 }
 
-.signup span {
+.signup span , .signup-form span {
     color: #7C7D7E;
 }
 
@@ -1364,7 +1364,7 @@ body.dark-theme {
     /* Change to the desired color */
 }
 .dark-theme :is(button[type=submit],button[type=button]){
-    background-color: var(--container-color) !important;
+    background-color: var(--first-color) !important;
 }
 .dark-theme .section__title-1::after,
 .dark-theme .section__title-2::after {
@@ -1455,11 +1455,11 @@ body.dark-theme {
 .dark-theme .project__subtitle::after{
     background-color: var(--text-color);
 }
-.dark-theme :is(button, .nav__links nav li ul:last-child button) {
+.dark-theme :is( .nav__links nav li ul:last-child button) {
     background-color: var(--body-color);
 }
 
-.dark-theme :is(button:hover, .nav__links nav li ul:last-child button:hover) {
+.dark-theme :is( .nav__links nav li ul:last-child button:hover) {
     background-color: var(--first-color);
 }
 
@@ -1506,7 +1506,9 @@ body.dark-theme {
     background-color: hsl(0, 0%, 40%);
 }
 
-
+.dark-theme .signup-form{
+    background-color: var(--body-color);
+}
 @media screen and (max-width:820px) {
     .container {
         display: flex;
@@ -1850,7 +1852,21 @@ body.dark-theme {
         width: 300px;
     }
 
-    
+    .sigup__main{
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        padding-bottom: 1rem;
+    }
+    .signup-form{
+        padding: 1rem 0;
+        height: max-content;
+        margin: 0 5.5rem;
+    }
+    .signup-form h2{
+        margin: 0;
+    }
+    .sign
     .contact {
         margin-top: 4rem;
         height: 100% !important;

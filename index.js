@@ -102,15 +102,25 @@ const setSuccess = (element) => {
 };
 
 const isValidEmail = (email) => {
-  const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\.com$/;
   return re.test(String(email).toLowerCase());
 };
+
+
 
 
 
 function validateName(input) {
   const names = input.split(/\s+/);
   const numNames = names.length;
+  for (const name of names) {
+    if (!/^[a-zA-Z]+$/.test(name)) {
+      return "Numbers are not allowed in names"; 
+    }
+    if (name.length < 4) {
+      return "Each name should have at least 4 characters"; // Return specific error message
+    }
+  }
   return numNames === 2 || numNames === 3;
 }
 const resetErrors = () => {
@@ -145,14 +155,20 @@ const validateInputs = () => {
 
   // Validate name
   if (nameValue === "") {
-      setError(nameContact, "Name is required");
-      isValid = false;
-  } else if (!validateName(nameValue)) {
-      setError(nameContact, "The name should be at least 2 or 3 names");
-      isValid = false;
-  }else{
-    setSuccess(nameContact);
-  }
+    setError(nameContact, "Name is required");
+    isValid = false;
+} else {
+    const nameValidationResult = validateName(nameValue);
+    if (typeof nameValidationResult === "string") {
+        setError(nameContact, nameValidationResult); // Display specific error message
+        isValid = false;
+    } else if (!nameValidationResult) {
+        setError(nameContact, "The name should be at least 2 or 3 names");
+        isValid = false;
+    } else {
+        setSuccess(nameContact);
+    }
+}
 
   // Validate subject
   if (subjectValue === "") {

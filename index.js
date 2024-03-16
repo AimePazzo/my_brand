@@ -77,7 +77,7 @@ themeButton.addEventListener("click", () => {
 
 
 
-const contactForm = document.getElementById("contact-form");
+
 const nameContact = document.getElementById("name"),
   emailContact = document.getElementById("email"),
   subjectContact = document.getElementById("subject"),
@@ -110,25 +110,30 @@ const isValidEmail = (email) => {
 
 
 
-function validateName(input) {
-  const names = input.split(/\s+/);
-  const numNames = names.length;
-  for (const name of names) {
-    if (!/^[a-zA-Z]+$/.test(name)) {
-      return "Numbers are not allowed in names"; 
-    }
-    if (name.length < 4) {
-      return "Each name should have at least 4 characters"; // Return specific error message
-    }
-  }
-  return numNames === 2 || numNames === 3;
-}
+// function validateName(input) {
+//   const names = input.split(/\s+/);
+//   const numNames = names.length;
+//   for (const name of names) {
+//     if (!/^[a-zA-Z]+$/.test(name)) {
+//       return "Numbers are not allowed in names"; 
+//     }
+//     if (name.length < 4) {
+//       return "Each name should have at least 4 characters"; // Return specific error message
+//     }
+//   }
+//   return numNames === 2 || numNames === 3;
+// }
 const resetErrors = () => {
   const errorElements = document.querySelectorAll('.error');
   const successElements = document.querySelectorAll('.success');
-  
-  [...errorElements].forEach((e) => e.classList.remove('error'));
-  [...successElements].forEach((e) => e.classList.remove('success'));
+
+  errorElements.forEach((e) => {
+    e.innerText =''
+    
+});
+  successElements.forEach((e) =>{ 
+    e.classList.remove('success');
+  });
 };
 
 
@@ -138,18 +143,18 @@ const validateInputs = () => {
   const nameValue = nameContact.value.trim();
   const subjectValue = subjectContact.value.trim();
   const messageValue = messageContact.value.trim();
-  
+
 
   let isValid = true;
 
   // Validate email
   if (!isValidEmail(emailValue)) {
-      setError(emailContact, "Provide a valid email address");
-      isValid = false;
+    setError(emailContact, "Provide a valid email address");
+    isValid = false;
   } else if (emailValue === "") {
-      setError(emailContact, "Email is required");
-      isValid = false;
-  }else{
+    setError(emailContact, "Email is required");
+    isValid = false;
+  } else {
     setSuccess(emailContact)
   }
 
@@ -157,51 +162,59 @@ const validateInputs = () => {
   if (nameValue === "") {
     setError(nameContact, "Name is required");
     isValid = false;
-} else {
-    const nameValidationResult = validateName(nameValue);
-    if (typeof nameValidationResult === "string") {
-        setError(nameContact, nameValidationResult); // Display specific error message
-        isValid = false;
-    } else if (!nameValidationResult) {
-        setError(nameContact, "The name should be at least 2 or 3 names");
-        isValid = false;
-    } else {
-        setSuccess(nameContact);
-    }
-}
+  } else {
+    //     const nameValidationResult = validateName(nameValue);
+    //     if (typeof nameValidationResult === "string") {
+    //         setError(nameContact, nameValidationResult); // Display specific error message
+    //         isValid = false;
+    //     } else if (!nameValidationResult) {
+    //         setError(nameContact, "The name should be at least 2 or 3 names");
+    //         isValid = false;
+    //     } else {
+    setSuccess(nameContact);
+  }
 
   // Validate subject
   if (subjectValue === "") {
-      setError(subjectContact, "Subject is required");
-      isValid = false;
-  }else{
+    setError(subjectContact, "Subject is required");
+    isValid = false;
+  } else {
     setSuccess(subjectContact);
   }
 
   // Validate message
   if (messageValue === "") {
-      setError(messageContact, "Message / Comment is required");
-      isValid = false;
-  }else{
+    setError(messageContact, "Message / Comment is required");
+    isValid = false;
+  } else {
     setSuccess(messageContact);
   }
   return isValid;
 };
 
 
-let userData = [];
+let messageData = [];
 
-const handleSubmit =(e) => {
-  e.preventDefault();
-   const isValid = validateInputs();
-   if(!isValid){return}
-      let user = { name: nameContact.value, email:emailContact.value, subject:subjectContact.value , message: messageContact.value }
-      userData.push(user);
-      console.log(userData);
-      localStorage.setItem('UserDate',JSON.stringify(userData));
-       alert("Your Message has been sent successfully!");
-      resetErrors();
-      e.target.reset();
+const handleSubmit = () => {
+  const isValid = validateInputs();
+  if (!isValid) { return }
+  const existingUserData = JSON.parse(localStorage.getItem("LoginUser")) || [];
+  const foundUser = existingUserData.find(user => user.email === emailContact.value);
+  if (foundUser) {
+    let user = { username: nameContact.value, email: emailContact.value, subject: subjectContact.value, message: messageContact.value }
+    messageData.push(user);
+    console.log(messageData);
+    localStorage.setItem('contactInfo', JSON.stringify(messageData));
+    alert("Your Message has been sent successfully!");
+    nameContact.value = ''
+    emailContact.value = ''
+    subjectContact.value = ''
+    messageContact.value = ''
+    resetErrors()
+  } else {
+    setError(emailContact, "User not logged in");
+  }
+
 }
 
-contactForm.addEventListener("submit", handleSubmit);
+

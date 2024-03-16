@@ -12,7 +12,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="shortcut icon" href="img/icon.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="img/icon.svg" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -170,7 +170,7 @@
                 <p class="link"><a href="">Forgot Password?</a></p>
                 <br />
                 <button type="submit" id="submit">Sign in</button><br />
-                <p class="lines">or </p>
+                <p class="lines">OR</p>
                 <div class="login__button">
                   <button type="button">
                     <img
@@ -222,6 +222,18 @@
                       id="last__name"
                       value=""
                       placeholder="Last Name"
+                    />
+
+                    <div class="error"></div>
+                  </div>
+                  <div class="login__group">
+                    <label for="username">User Name</label><br />
+                    <input
+                      type="text"
+                      name="user__name"
+                      id="user__name"
+                      value=""
+                      placeholder="Choose User Name"
                     />
 
                     <div class="error"></div>
@@ -284,7 +296,8 @@
             </form>
 
             <p>
-              <span>Already have an account?</span> <a href="#" id="login-link">Login</a>
+              <span>Already have an account?</span>
+              <a href="#" id="login-link">Login</a>
             </p>
           </div>
         </div>
@@ -320,15 +333,19 @@
       });
     </script>
     <script>
-      document.getElementById('signup-link').addEventListener('click', function(e) {
-  e.preventDefault();
-  document.getElementById('signup-popup').classList.add('active');
-});
+      document
+        .getElementById("signup-link")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          document.getElementById("signup-popup").classList.add("active");
+        });
 
-document.getElementById('login-link').addEventListener('click', function(e) {
-  e.preventDefault();
-  document.getElementById('signup-popup').classList.remove('active');
-})
+      document
+        .getElementById("login-link")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          document.getElementById("signup-popup").classList.remove("active");
+        });
       const form = document.getElementById("form");
       const signupForm = document.getElementById("signupForm");
       const email = document.getElementById("email");
@@ -352,42 +369,94 @@ document.getElementById('login-link').addEventListener('click', function(e) {
         inputControl.classList.remove("error");
       };
 
+      function isStrongPassword(password) {
+        // Regular expressions to check for lowercase, uppercase, and digit
+        const lowercaseRegex = /[a-z]/;
+        const uppercaseRegex = /[A-Z]/;
+        const digitRegex = /[0-9]/;
+
+        // Check if password contains at least one lowercase letter, one uppercase letter, and one digit
+        const hasLowercase = lowercaseRegex.test(password);
+        const hasUppercase = uppercaseRegex.test(password);
+        const hasDigit = digitRegex.test(password);
+
+        // Return true if all conditions are met, otherwise false
+        return hasLowercase && hasUppercase && hasDigit;
+      }
+
       const isEmail = (email) => {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
         return re.test(String(email).toLowerCase());
       };
 
       const validateLoginInputs = () => {
+        let isValid = true;
         const emailValue = email.value.trim();
         const passwordValue = password.value.trim();
         if (emailValue === "") {
-          isError(email, "Email is required");
-        } else if (!isEmail(emailValue)) {
-          isError(email, "Provide a valid email address");
+          setError(email, "Email is required");
+          isValid = false;
         } else {
           isSuccess(email);
         }
 
         if (passwordValue === "") {
-          isError(password, "Password is required");
-        } else if (passwordValue.length < 8) {
-          isError(password, "Password must be at least 8 character.");
+          setError(password, "Password is required");
+          isValid = false;
         } else {
-          isSuccess(password);
+          setSuccess(password);
         }
+        return isValid;
+      };
+
+      const handleSubmitLogin = () => {
+        let loginUser = [];
+        const isValid = validateLoginInputs();
+        if (isValid) {
+          // Retrieve existing user data from local storage
+          const existingUserData =
+            JSON.parse(localStorage.getItem("UserData")) || [];
+          // Find user with matching email and password
+          const foundUser = existingUserData.find(
+            (user) =>
+              user.email === email.value && user.password === password.value
+          );
+
+          if (foundUser) {
+            let User = {
+              email: email.value,
+              password: password.value,
+            };
+            loginUser.push(User);
+            localStorage.setItem("LoginUser", JSON.stringify(loginUser));
+
+            alert("Login successful!"); 
+            resetErrors(); 
+            email.value = "";
+            password.value = "";
+            
+          } else {
+            
+            setError(email, "Invalid email ");
+            setError(password, "Invalid password");
+          }
+        }
+        return;
       };
 
       // SIGNUP VALIDATION
       const signupFirst = document.getElementById("First__Name");
       const signupLast = document.getElementById("last__name");
+      const signupUsername = document.getElementById("user__name");
       const signupEmail = document.getElementById("signup__email");
       const signupPassword = document.getElementById("password1");
       const signupPassword2 = document.getElementById("password2");
 
       const validateSignup = () => {
         const firstNameValue = signupFirst.value.trim();
-        const lastnameValue = signupLast.value.trim();
-        const SignupEmailValue = signupEmail.value.trim();
+        const lastNameValue = signupLast.value.trim();
+        const userNameValue = signupUsername.value.trim();
+        const signupEmailValue = signupEmail.value.trim();
         const passwordValue = signupPassword.value.trim();
         const confirmPasswordValue = signupPassword2.value.trim();
 
@@ -400,17 +469,24 @@ document.getElementById('login-link').addEventListener('click', function(e) {
           isSuccess(signupFirst);
         }
 
-        if (lastnameValue === "") {
-          isError(signupLast, "Last Name is Required");
+        if (lastNameValue === "") {
+          isError(signupLast, "Please provide your last name");
           isValid = false;
         } else {
           isSuccess(signupLast);
         }
 
-        if (SignupEmailValue === "") {
-          setError(signupEmail, "Email is required");
+        if (userNameValue === "") {
+          isError(signupUsername, "Please provide your user name");
           isValid = false;
-        } else if (!isEmail(SignupEmailValue)) {
+        } else {
+          isSuccess(signupUsername);
+        }
+
+        if (signupEmailValue === "") {
+          setError(signupEmail, "Please provide your email");
+          isValid = false;
+        } else if (!isEmail(signupEmailValue)) {
           setError(signupEmail, "Provide a valid email address");
           isValid = false;
         } else {
@@ -420,8 +496,14 @@ document.getElementById('login-link').addEventListener('click', function(e) {
         if (passwordValue === "") {
           setError(signupPassword, "Password is required");
           isValid = false;
-        } else if (signupPassword.length < 8) {
-          setError(signupPassword, "Password must be at least 8 character.");
+        } else if (passwordValue.length < 8) {
+          setError(signupPassword, "Password must be at least 8 characters");
+          isValid = false;
+        } else if (!isStrongPassword(passwordValue)) {
+          setError(
+            signupPassword,
+            "Password must contain at least one lowercase letter, one uppercase letter, and one digit"
+          );
           isValid = false;
         } else {
           setSuccess(signupPassword);
@@ -431,7 +513,7 @@ document.getElementById('login-link').addEventListener('click', function(e) {
           setError(signupPassword2, "Please confirm your password");
           isValid = false;
         } else if (passwordValue !== confirmPasswordValue) {
-          setError(signupPassword2, "Passwords doesn't match");
+          setError(signupPassword2, "Passwords do not match");
           isValid = false;
         } else {
           setSuccess(signupPassword2);
@@ -440,30 +522,58 @@ document.getElementById('login-link').addEventListener('click', function(e) {
         return isValid;
       };
 
-      let newUser =[];
-      const handleSubmitSignup = (e) => {
+      let newUser = [];
+
+      const handleSubmitSignup = () => {
         const isValid = validateSignup();
         if (!isValid) {
           return;
         }
-        let user = {
+
+        // Retrieve existing user data from local storage
+        const existingUserData =
+          JSON.parse(localStorage.getItem("UserData")) || [];
+
+        // Check if the email already exists in the existing data
+        const existingUser = existingUserData.find(
+          (user) => user.email === signupEmail.value
+        );
+        if (existingUser) {
+          // Email already exists, handle it accordingly (e.g., display error message)
+          setError(signupEmail, "Email already exists");
+          return;
+        }
+
+        // If email does not exist, proceed to add the new user
+        const newUser = {
           FirstName: signupFirst.value,
           LastName: signupLast.value,
+          UserName: signupUsername.value,
           email: signupEmail.value,
           password: signupPassword.value,
         };
-        newUser.push(user);
-        console.log(newUser);
-        localStorage.setItem("UserDate", JSON.stringify(newUser));
-        alert("Your Account created successfully!");
+
+        // Add the new user to the existing data
+        existingUserData.push(newUser);
+
+        // Store the updated user data back to local storage
+        localStorage.setItem("UserData", JSON.stringify(existingUserData));
+
+        // Display success message or perform other actions
+        alert("Your account has been created successfully!");
         resetErrors();
-        e.target.reset();
+        signupEmail.value = "";
+        signupFirst.value = "";
+        signupLast.value = "";
+        signupUsername.value = "";
+        signupPassword.value = "";
+        signupPassword2.value = "";
+        document.getElementById("signup-popup").classList.remove("active");
       };
 
       form.addEventListener("submit", (e) => {
         e.preventDefault();
-
-        validateLoginInputs();
+        handleSubmitLogin();
       });
 
       signupForm.addEventListener("submit", (e) => {

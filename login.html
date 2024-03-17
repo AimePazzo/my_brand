@@ -164,7 +164,7 @@
                     value=""
                     placeholder="At least 8 characters"
                   />
-
+                  <i class="ri-eye-line login__icon" id="toggle-login"></i>
                   <div class="error"></div>
                 </div>
                 <p class="link"><a href="">Forgot Password?</a></p>
@@ -233,7 +233,7 @@
                       name="user__name"
                       id="user__name"
                       value=""
-                      placeholder="Choose User Name"
+                      placeholder="Choose Your User Name"
                     />
 
                     <div class="error"></div>
@@ -261,11 +261,11 @@
                       value=""
                       placeholder="At least 8 characters"
                     />
-
+                    <i class="ri-eye-line" id="toggle-password"></i>
                     <div class="error"></div>
                   </div>
                   <div class="login__group">
-                    <label for="password2">Conform Password</label><br />
+                    <label for="password2">Confirm Password</label><br />
                     <input
                       type="password"
                       name="password2"
@@ -273,7 +273,7 @@
                       value=""
                       placeholder="At least 8 characters"
                     />
-
+                    <i class="ri-eye-line" id="toggle-password2"></i>
                     <div class="error"></div>
                   </div>
                   <div class="signup__button">
@@ -374,14 +374,16 @@
         const lowercaseRegex = /[a-z]/;
         const uppercaseRegex = /[A-Z]/;
         const digitRegex = /[0-9]/;
+        const specialRegex = /[!@#$%^&*()_+={}\[\]:;"'<>,.?/|\\-]/;
 
         // Check if password contains at least one lowercase letter, one uppercase letter, and one digit
         const hasLowercase = lowercaseRegex.test(password);
         const hasUppercase = uppercaseRegex.test(password);
         const hasDigit = digitRegex.test(password);
+        const hasSpecial = specialRegex.test(password);
 
         // Return true if all conditions are met, otherwise false
-        return hasLowercase && hasUppercase && hasDigit;
+        return hasLowercase && hasUppercase && hasDigit && hasSpecial;
       }
 
       const isEmail = (email) => {
@@ -430,13 +432,11 @@
             loginUser.push(User);
             localStorage.setItem("LoginUser", JSON.stringify(loginUser));
 
-            alert("Login successful!"); 
-            resetErrors(); 
+            alert("Login successful!");
+            resetErrors();
             email.value = "";
             password.value = "";
-            
           } else {
-            
             setError(email, "Invalid email ");
             setError(password, "Invalid password");
           }
@@ -459,12 +459,14 @@
         const signupEmailValue = signupEmail.value.trim();
         const passwordValue = signupPassword.value.trim();
         const confirmPasswordValue = signupPassword2.value.trim();
-
+        const re = /^[a-zA-z]+$/;
         let isValid = true;
 
         if (firstNameValue === "") {
           isError(signupFirst, "Please provide your first name");
           isValid = false;
+        } else if (!re.test(firstNameValue)) {
+          isError(signupFirst, "Invalid Name");
         } else {
           isSuccess(signupFirst);
         }
@@ -472,6 +474,8 @@
         if (lastNameValue === "") {
           isError(signupLast, "Please provide your last name");
           isValid = false;
+        } else if (!re.test(lastNameValue)) {
+          isError(signupLast, "Invalid Name");
         } else {
           isSuccess(signupLast);
         }
@@ -502,7 +506,7 @@
         } else if (!isStrongPassword(passwordValue)) {
           setError(
             signupPassword,
-            "Password must contain at least one lowercase letter, one uppercase letter, and one digit"
+            "Password must contain lowercase letter, uppercase letter, digit, and special character"
           );
           isValid = false;
         } else {
@@ -570,6 +574,46 @@
         signupPassword2.value = "";
         document.getElementById("signup-popup").classList.remove("active");
       };
+      const toggleLogin = document.getElementById("toggle-login");
+      const togglePassword1 = document.getElementById("toggle-password");
+      const togglePassword2 = document.getElementById("toggle-password2");
+
+      function togglePassword(inputField, toggleButton) {
+        inputField.addEventListener("input", function () {
+          toggleButton.style.display = this.value ? "block" : "none";
+        });
+
+        inputField.addEventListener("focus", function () {
+          toggleButton.style.display = this.value ? "block" : "none";
+        });
+      }
+
+      // Attach event listeners for each password input and toggle button
+      togglePassword(password, toggleLogin);
+      togglePassword(signupPassword, togglePassword1);
+      togglePassword(signupPassword2, togglePassword2);
+
+      // Function to toggle password visibility
+      function showPassword(inputField, toggleButton) {
+        const type =
+          inputField.getAttribute("type") === "password" ? "text" : "password";
+        inputField.setAttribute("type", type);
+        toggleButton.classList.toggle("ri-eye-line");
+        toggleButton.classList.toggle("ri-eye-off-line");
+      }
+
+      // Attach click event listener to each toggle button
+      toggleLogin.addEventListener("click", function () {
+        showPassword(password, this);
+      });
+
+      togglePassword1.addEventListener("click", function () {
+        showPassword(signupPassword, this);
+      });
+
+      togglePassword2.addEventListener("click", function () {
+        showPassword(signupPassword2, this);
+      });
 
       form.addEventListener("submit", (e) => {
         e.preventDefault();

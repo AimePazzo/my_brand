@@ -979,6 +979,7 @@ a {
     height: 100%;
     background-color: #e7e6e6;
     border-radius: 37px;
+    gap: 4rem;
 }
 
 .login__content {
@@ -990,9 +991,23 @@ a {
     text-align: center;
     font-family: actor;
     color: #023047;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
-
+.login__group{
+    position: relative;
+}
+.login__icon{
+    right: 30px !important;
+}
+#toggle-password ,#toggle-login, #toggle-password2 {
+    display: none;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #023047;
+}
 .login__group label {
     font-family: actor;
     color: #023047;
@@ -1019,7 +1034,6 @@ a {
     display: grid;
     align-items: center;
     justify-content: center;
-    margin-left: 4rem;
 }
 
 #form .link a {
@@ -1027,7 +1041,7 @@ a {
     font-family: actor;
     font-size: 15px;
     float: right;
-    margin-right: 1rem;
+    margin-right: 1.4rem;
     text-decoration: none;
     margin-top: 0.3rem;
     margin-bottom: 0.3rem;
@@ -1051,13 +1065,13 @@ button[type=submit]:hover {
 }
 
 .lines {
-    margin-top: 0.6rem;
+    margin: 0.6rem 0;
     color: #666666;
     font-size: 20px;
     text-align: center;
     font-family: actor;
     position: relative;
-    padding-right: 1rem;
+    width: 280px;
 }
 
 .lines::before,
@@ -1065,21 +1079,17 @@ button[type=submit]:hover {
     content: "";
     position: absolute;
     top: 55%;
-    width: 30%;
+    width: 100px;
     height: 1px;
     background-color: rgb(192, 186, 186);
 }
 
 .lines::before {
-    left: 1rem;
+    left: 0rem;
 }
 
 .lines::after {
-    right: 2rem;
-}
-
-.lines::after {
-    margin-right: -5px;
+    right: 0rem;
 }
 
 .login__button {
@@ -1147,7 +1157,7 @@ button[type=submit]:hover {
 
 .signup-form {
     background-color: #e7e6e6;
-    padding: 5rem 20px 20px 20px;
+    padding: 2rem 20px 20px 20px;
     border-radius: 37px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 100%;

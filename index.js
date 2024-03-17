@@ -76,8 +76,6 @@ themeButton.addEventListener("click", () => {
 
 
 
-
-
 const nameContact = document.getElementById("name"),
   emailContact = document.getElementById("email"),
   subjectContact = document.getElementById("subject"),

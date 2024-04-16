@@ -20,8 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 const navMenu = document.getElementById("nav-links"),
   navToggle = document.getElementById("nav-toggle"),
   navClose = document.getElementById("nav-close"),
-  loginButton = document.getElementById("login-button"),
-  login__link = document.getElementById("login__link");
+  loginButton = document.getElementById("login-button");
 
 // MENU SHOW
 if (navToggle) {
@@ -80,6 +79,7 @@ const nameContact = document.getElementById("name"),
   emailContact = document.getElementById("email"),
   subjectContact = document.getElementById("subject"),
   messageContact = document.getElementById("message");
+sms = document.getElementById('.sms');
 
 const setError = (element, message) => {
   const inputControl = element.parentElement;
@@ -99,6 +99,8 @@ const setSuccess = (element) => {
   inputControl.classList.remove("error");
 };
 
+
+
 const isValidEmail = (email) => {
   const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   return re.test(String(email).toLowerCase());
@@ -108,33 +110,31 @@ const isValidEmail = (email) => {
 
 
 
-// function validateName(input) {
-//   const names = input.split(/\s+/);
-//   const numNames = names.length;
-//   for (const name of names) {
-//     if (!/^[a-zA-Z]+$/.test(name)) {
-//       return "Numbers are not allowed in names"; 
-//     }
-//     if (name.length < 4) {
-//       return "Each name should have at least 4 characters"; // Return specific error message
-//     }
-//   }
-//   return numNames === 2 || numNames === 3;
-// }
 const resetErrors = () => {
-  const errorElements = document.querySelectorAll('.error');
-  const successElements = document.querySelectorAll('.success');
+  const errorElements = document.querySelectorAll('.errors');
+  const successElements = document.querySelectorAll('.successs');
 
   errorElements.forEach((e) => {
-    e.innerText =''
-    
-});
-  successElements.forEach((e) =>{ 
+    e.innerText = ''
+
+  });
+  successElements.forEach((e) => {
     e.classList.remove('success');
   });
 };
 
+const resetErrorss = () => {
+  const errorElements = document.querySelectorAll('.errors');
+  const successElements = document.querySelectorAll('.successs');
 
+  errorElements.forEach((e) => {
+    e.innerText = ''
+
+  });
+  successElements.forEach((e) => {
+    e.classList.remove('successs');
+  });
+};
 
 const validateInputs = () => {
   const emailValue = emailContact.value.trim();
@@ -161,14 +161,6 @@ const validateInputs = () => {
     setError(nameContact, "Name is required");
     isValid = false;
   } else {
-    //     const nameValidationResult = validateName(nameValue);
-    //     if (typeof nameValidationResult === "string") {
-    //         setError(nameContact, nameValidationResult); // Display specific error message
-    //         isValid = false;
-    //     } else if (!nameValidationResult) {
-    //         setError(nameContact, "The name should be at least 2 or 3 names");
-    //         isValid = false;
-    //     } else {
     setSuccess(nameContact);
   }
 
@@ -196,23 +188,16 @@ let messageData = [];
 const handleSubmit = () => {
   const isValid = validateInputs();
   if (!isValid) { return }
-  const existingUserData = JSON.parse(localStorage.getItem("LoginUser")) || [];
-  const foundUser = existingUserData.find(user => user.email === emailContact.value);
-  if (foundUser) {
-    let user = { username: nameContact.value, email: emailContact.value, subject: subjectContact.value, message: messageContact.value }
-    messageData.push(user);
-    console.log(messageData);
-    localStorage.setItem('contactInfo', JSON.stringify(messageData));
-    alert("Your Message has been sent successfully!");
-    nameContact.value = ''
-    emailContact.value = ''
-    subjectContact.value = ''
-    messageContact.value = ''
-    resetErrors()
-  } else {
-    setError(emailContact, "User not logged in");
-  }
-
+  let user = { username: nameContact.value, email: emailContact.value, subject: subjectContact.value, message: messageContact.value }
+  messageData.push(user);
+  console.log(messageData);
+  localStorage.setItem('contactInfo', JSON.stringify(messageData));
+  alert("Your Message has been sent successfully!");
+  nameContact.value = ''
+  emailContact.value = ''
+  subjectContact.value = ''
+  messageContact.value = ''
+  resetErrors()
 }
 
 

@@ -1,150 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css" integrity="sha512-OQDNdI5rpnZ0BRhhJc+btbbtnxaj+LdQFeh0V9/igiEPDiWE2fG+ZsXl0JEH+bjXKPJ3zcXqNyP4/F/NegVdZg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="shortcut icon" href="img/icon.svg" type="image/x-icon">
-<link href="https://fonts.googleapis.com/css2?family=Actor&family=Koulen&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
-    <link rel="stylesheet" href="index.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css"
+      integrity="sha512-OQDNdI5rpnZ0BRhhJc+btbbtnxaj+LdQFeh0V9/igiEPDiWE2fG+ZsXl0JEH+bjXKPJ3zcXqNyP4/F/NegVdZg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="shortcut icon" href="img/icon.svg" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Actor&family=Koulen&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+    />
+    <link rel="stylesheet" href="index.css" />
     <title>My Portfolio - Skills</title>
-</head>
-<body>
-    <div class="container">
-        <!--  HEADER -->
-        <div class="header">
-            <div class="nav__logo"><svg width="110" height="58" viewBox="0 0 167 58" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M60.0366 40H57.3413C57.2632 40 57.2241 39.9609 57.2241 39.8828L57.271 23.3945C57.271 23.332 57.3022 23.3008 57.3647 23.3008H61.9819C63.4507 23.3008 64.6108 23.75 65.4624 24.6484C66.3218 25.5391 66.7515 26.7539 66.7515 28.293C66.7515 29.418 66.5288 30.3984 66.0835 31.2344C65.6304 32.0625 65.0444 32.7031 64.3257 33.1562C63.6069 33.6094 62.8257 33.8359 61.9819 33.8359H60.1538V39.8828C60.1538 39.9609 60.1147 40 60.0366 40ZM61.9819 26.1484L60.1538 26.1719V30.9297H61.9819C62.4897 30.9297 62.9312 30.6875 63.3062 30.2031C63.6812 29.7109 63.8687 29.0742 63.8687 28.293C63.8687 27.668 63.7007 27.1562 63.3647 26.7578C63.0288 26.3516 62.5679 26.1484 61.9819 26.1484ZM67.3843 39.8828L70.3608 23.3945C70.3765 23.332 70.4155 23.3008 70.478 23.3008H73.9585C74.021 23.3008 74.0601 23.332 74.0757 23.3945L76.9351 39.8828C76.9429 39.9609 76.9116 40 76.8413 40H74.1812C74.103 40 74.0601 39.9609 74.0522 39.8828L73.7944 38.125H70.5249L70.2671 39.8828C70.2593 39.9609 70.2202 40 70.1499 40H67.478C67.4155 40 67.3843 39.9609 67.3843 39.8828ZM72.0835 28.8203L71.0054 35.5586H73.314L72.3296 28.8203L72.189 27.9297L72.0835 28.8203ZM83.5562 40H80.8491C80.7788 40 80.7437 39.9609 80.7437 39.8828V26.1953H77.6265C77.5483 26.1953 77.5093 26.1562 77.5093 26.0781L77.5327 23.3945C77.5327 23.332 77.564 23.3008 77.6265 23.3008H86.7437C86.8296 23.3008 86.8726 23.332 86.8726 23.3945V26.0781C86.8726 26.1562 86.8413 26.1953 86.7788 26.1953H83.6265L83.6499 39.8828C83.6499 39.9609 83.6187 40 83.5562 40ZM90.8569 40H88.1382C88.0757 40 88.0444 39.9609 88.0444 39.8828L88.0913 23.3945C88.0913 23.332 88.1226 23.3008 88.1851 23.3008H93.0366C93.9038 23.3008 94.7007 23.5117 95.4272 23.9336C96.1538 24.3555 96.7319 24.9219 97.1616 25.6328C97.5991 26.3438 97.8179 27.1484 97.8179 28.0469C97.8179 28.6328 97.728 29.1641 97.5483 29.6406C97.3687 30.1172 97.1577 30.5195 96.9155 30.8477C96.6812 31.1758 96.4663 31.418 96.271 31.5742C97.1382 32.5352 97.5718 33.6641 97.5718 34.9609L97.5952 39.8828C97.5952 39.9609 97.5562 40 97.478 40H94.7593C94.6968 40 94.6655 39.9766 94.6655 39.9297V34.9609C94.6655 34.3828 94.4624 33.8828 94.0562 33.4609C93.6499 33.0391 93.1499 32.8281 92.5562 32.8281H90.9741L90.9507 39.8828C90.9507 39.9609 90.9194 40 90.8569 40ZM93.0366 26.1719H90.9741V29.9453H93.0366C93.5288 29.9453 93.9663 29.7617 94.3491 29.3945C94.7397 29.0273 94.9351 28.5781 94.9351 28.0469C94.9351 27.5391 94.7476 27.1016 94.3726 26.7344C93.9976 26.3594 93.5522 26.1719 93.0366 26.1719ZM102.458 40H99.7397C99.6616 40 99.6226 39.9609 99.6226 39.8828L99.646 23.3945C99.646 23.332 99.6772 23.3008 99.7397 23.3008H102.435C102.498 23.3008 102.529 23.332 102.529 23.3945L102.552 39.8828C102.552 39.9609 102.521 40 102.458 40ZM109.08 40.2344C108.212 40.2344 107.419 40.0156 106.701 39.5781C105.99 39.1406 105.423 38.5547 105.001 37.8203C104.587 37.0781 104.38 36.2539 104.38 35.3477L104.404 27.8594C104.404 26.9688 104.607 26.1641 105.013 25.4453C105.419 24.7188 105.978 24.1367 106.689 23.6992C107.408 23.2539 108.205 23.0312 109.08 23.0312C109.97 23.0312 110.763 23.2461 111.458 23.6758C112.162 24.1055 112.72 24.6875 113.134 25.4219C113.556 26.1484 113.767 26.9609 113.767 27.8594V28.9609C113.767 29.0234 113.736 29.0547 113.673 29.0547H110.978C110.916 29.0547 110.884 29.0234 110.884 28.9609V27.8594C110.884 27.3281 110.712 26.8711 110.369 26.4883C110.025 26.1055 109.595 25.9141 109.08 25.9141C108.509 25.9141 108.072 26.1094 107.767 26.5C107.462 26.8906 107.31 27.3438 107.31 27.8594V35.3477C107.31 35.9336 107.482 36.4141 107.826 36.7891C108.169 37.1562 108.587 37.3398 109.08 37.3398C109.595 37.3398 110.025 37.1367 110.369 36.7305C110.712 36.3164 110.884 35.8555 110.884 35.3477V34.2344C110.884 34.1719 110.916 34.1406 110.978 34.1406H113.697C113.759 34.1406 113.791 34.1719 113.791 34.2344V35.3477C113.791 36.2461 113.58 37.0664 113.158 37.8086C112.728 38.543 112.162 39.1328 111.458 39.5781C110.755 40.0156 109.962 40.2344 109.08 40.2344ZM118.349 40H115.63C115.568 40 115.537 39.9609 115.537 39.8828L115.583 23.418C115.583 23.3398 115.615 23.3008 115.677 23.3008H118.373C118.435 23.3008 118.466 23.3398 118.466 23.418V29.1016L122.228 23.3945C122.291 23.332 122.349 23.3008 122.404 23.3008H125.158C125.228 23.3008 125.244 23.332 125.205 23.3945L121.056 30.0156L125.708 39.9062C125.748 39.9688 125.708 40 125.591 40H122.662C122.583 40 122.537 39.9688 122.521 39.9062L119.275 32.8516L118.443 34.1641V39.8828C118.443 39.9609 118.412 40 118.349 40ZM129.144 40.1364C128.724 40.1364 128.363 39.9858 128.062 39.6847C127.761 39.3835 127.61 39.0227 127.61 38.6023C127.61 38.1818 127.761 37.821 128.062 37.5199C128.363 37.2187 128.724 37.0682 129.144 37.0682C129.565 37.0682 129.925 37.2187 130.227 37.5199C130.528 37.821 130.678 38.1818 130.678 38.6023C130.678 38.8807 130.607 39.1364 130.465 39.3693C130.329 39.6023 130.144 39.7898 129.911 39.9318C129.684 40.0682 129.428 40.1364 129.144 40.1364Z" fill="white"/>
-                <ellipse cx="28.1373" cy="29" rx="28.1373" ry="29" fill="#023047"/>
-                <path d="M24.9883 47H19.5977C19.4414 47 19.3633 46.9219 19.3633 46.7656L19.457 13.7891C19.457 13.6641 19.5195 13.6016 19.6445 13.6016H28.8789C31.8164 13.6016 34.1367 14.5 35.8398 16.2969C37.5586 18.0781 38.418 20.5078 38.418 23.5859C38.418 25.8359 37.9727 27.7969 37.082 29.4688C36.1758 31.125 35.0039 32.4062 33.5664 33.3125C32.1289 34.2188 30.5664 34.6719 28.8789 34.6719H25.2227V46.7656C25.2227 46.9219 25.1445 47 24.9883 47ZM28.8789 19.2969L25.2227 19.3438V28.8594H28.8789C29.8945 28.8594 30.7773 28.375 31.5273 27.4062C32.2773 26.4219 32.6523 25.1484 32.6523 23.5859C32.6523 22.3359 32.3164 21.3125 31.6445 20.5156C30.9727 19.7031 30.0508 19.2969 28.8789 19.2969Z" fill="white"/>
-                </svg>
-                </div>
-            <div class="nav__links show" id="nav-links">
-                <nav>
-                    <li>
-                        <ul><a href="./index.html" target="_parent" rel="noopener noreferrer" class="nav__link">home</a></ul>
-                        <ul><a href="./About.html" target="_parent" rel="noopener noreferrer" class="nav__link ">about Me</a></ul>
-                        <ul><a href="#" target="_parent" rel="noopener noreferrer" class="nav__link active">skills</a></ul>
-                        <ul><a href="./project.html" target="_parent" rel="noopener noreferrer" class="nav__link ">project</a></ul>
-                        <ul><a href="./contact.html" target="_parent" rel="noopener noreferrer" class="nav__link ">contact</a></ul>
-                        <ul><button id="login-button"><a href="./login.html" target="_parent" rel="noopener noreferrer" id="login__link">login</a></button></ul>
-                    </li>
-                    <div class="nav__close" id="nav-close">
-                        <!-- close icon -->
-                        <i class="ri-close-line"></i>
-                    </div>
-                </nav>
+  </head>
+  <body>
+    <header class="header">
+      <div class="nav__logo">
+        <svg
+          width="110"
+          height="58"
+          viewBox="0 0 167 58"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M60.0366 40H57.3413C57.2632 40 57.2241 39.9609 57.2241 39.8828L57.271 23.3945C57.271 23.332 57.3022 23.3008 57.3647 23.3008H61.9819C63.4507 23.3008 64.6108 23.75 65.4624 24.6484C66.3218 25.5391 66.7515 26.7539 66.7515 28.293C66.7515 29.418 66.5288 30.3984 66.0835 31.2344C65.6304 32.0625 65.0444 32.7031 64.3257 33.1562C63.6069 33.6094 62.8257 33.8359 61.9819 33.8359H60.1538V39.8828C60.1538 39.9609 60.1147 40 60.0366 40ZM61.9819 26.1484L60.1538 26.1719V30.9297H61.9819C62.4897 30.9297 62.9312 30.6875 63.3062 30.2031C63.6812 29.7109 63.8687 29.0742 63.8687 28.293C63.8687 27.668 63.7007 27.1562 63.3647 26.7578C63.0288 26.3516 62.5679 26.1484 61.9819 26.1484ZM67.3843 39.8828L70.3608 23.3945C70.3765 23.332 70.4155 23.3008 70.478 23.3008H73.9585C74.021 23.3008 74.0601 23.332 74.0757 23.3945L76.9351 39.8828C76.9429 39.9609 76.9116 40 76.8413 40H74.1812C74.103 40 74.0601 39.9609 74.0522 39.8828L73.7944 38.125H70.5249L70.2671 39.8828C70.2593 39.9609 70.2202 40 70.1499 40H67.478C67.4155 40 67.3843 39.9609 67.3843 39.8828ZM72.0835 28.8203L71.0054 35.5586H73.314L72.3296 28.8203L72.189 27.9297L72.0835 28.8203ZM83.5562 40H80.8491C80.7788 40 80.7437 39.9609 80.7437 39.8828V26.1953H77.6265C77.5483 26.1953 77.5093 26.1562 77.5093 26.0781L77.5327 23.3945C77.5327 23.332 77.564 23.3008 77.6265 23.3008H86.7437C86.8296 23.3008 86.8726 23.332 86.8726 23.3945V26.0781C86.8726 26.1562 86.8413 26.1953 86.7788 26.1953H83.6265L83.6499 39.8828C83.6499 39.9609 83.6187 40 83.5562 40ZM90.8569 40H88.1382C88.0757 40 88.0444 39.9609 88.0444 39.8828L88.0913 23.3945C88.0913 23.332 88.1226 23.3008 88.1851 23.3008H93.0366C93.9038 23.3008 94.7007 23.5117 95.4272 23.9336C96.1538 24.3555 96.7319 24.9219 97.1616 25.6328C97.5991 26.3438 97.8179 27.1484 97.8179 28.0469C97.8179 28.6328 97.728 29.1641 97.5483 29.6406C97.3687 30.1172 97.1577 30.5195 96.9155 30.8477C96.6812 31.1758 96.4663 31.418 96.271 31.5742C97.1382 32.5352 97.5718 33.6641 97.5718 34.9609L97.5952 39.8828C97.5952 39.9609 97.5562 40 97.478 40H94.7593C94.6968 40 94.6655 39.9766 94.6655 39.9297V34.9609C94.6655 34.3828 94.4624 33.8828 94.0562 33.4609C93.6499 33.0391 93.1499 32.8281 92.5562 32.8281H90.9741L90.9507 39.8828C90.9507 39.9609 90.9194 40 90.8569 40ZM93.0366 26.1719H90.9741V29.9453H93.0366C93.5288 29.9453 93.9663 29.7617 94.3491 29.3945C94.7397 29.0273 94.9351 28.5781 94.9351 28.0469C94.9351 27.5391 94.7476 27.1016 94.3726 26.7344C93.9976 26.3594 93.5522 26.1719 93.0366 26.1719ZM102.458 40H99.7397C99.6616 40 99.6226 39.9609 99.6226 39.8828L99.646 23.3945C99.646 23.332 99.6772 23.3008 99.7397 23.3008H102.435C102.498 23.3008 102.529 23.332 102.529 23.3945L102.552 39.8828C102.552 39.9609 102.521 40 102.458 40ZM109.08 40.2344C108.212 40.2344 107.419 40.0156 106.701 39.5781C105.99 39.1406 105.423 38.5547 105.001 37.8203C104.587 37.0781 104.38 36.2539 104.38 35.3477L104.404 27.8594C104.404 26.9688 104.607 26.1641 105.013 25.4453C105.419 24.7188 105.978 24.1367 106.689 23.6992C107.408 23.2539 108.205 23.0312 109.08 23.0312C109.97 23.0312 110.763 23.2461 111.458 23.6758C112.162 24.1055 112.72 24.6875 113.134 25.4219C113.556 26.1484 113.767 26.9609 113.767 27.8594V28.9609C113.767 29.0234 113.736 29.0547 113.673 29.0547H110.978C110.916 29.0547 110.884 29.0234 110.884 28.9609V27.8594C110.884 27.3281 110.712 26.8711 110.369 26.4883C110.025 26.1055 109.595 25.9141 109.08 25.9141C108.509 25.9141 108.072 26.1094 107.767 26.5C107.462 26.8906 107.31 27.3438 107.31 27.8594V35.3477C107.31 35.9336 107.482 36.4141 107.826 36.7891C108.169 37.1562 108.587 37.3398 109.08 37.3398C109.595 37.3398 110.025 37.1367 110.369 36.7305C110.712 36.3164 110.884 35.8555 110.884 35.3477V34.2344C110.884 34.1719 110.916 34.1406 110.978 34.1406H113.697C113.759 34.1406 113.791 34.1719 113.791 34.2344V35.3477C113.791 36.2461 113.58 37.0664 113.158 37.8086C112.728 38.543 112.162 39.1328 111.458 39.5781C110.755 40.0156 109.962 40.2344 109.08 40.2344ZM118.349 40H115.63C115.568 40 115.537 39.9609 115.537 39.8828L115.583 23.418C115.583 23.3398 115.615 23.3008 115.677 23.3008H118.373C118.435 23.3008 118.466 23.3398 118.466 23.418V29.1016L122.228 23.3945C122.291 23.332 122.349 23.3008 122.404 23.3008H125.158C125.228 23.3008 125.244 23.332 125.205 23.3945L121.056 30.0156L125.708 39.9062C125.748 39.9688 125.708 40 125.591 40H122.662C122.583 40 122.537 39.9688 122.521 39.9062L119.275 32.8516L118.443 34.1641V39.8828C118.443 39.9609 118.412 40 118.349 40ZM129.144 40.1364C128.724 40.1364 128.363 39.9858 128.062 39.6847C127.761 39.3835 127.61 39.0227 127.61 38.6023C127.61 38.1818 127.761 37.821 128.062 37.5199C128.363 37.2187 128.724 37.0682 129.144 37.0682C129.565 37.0682 129.925 37.2187 130.227 37.5199C130.528 37.821 130.678 38.1818 130.678 38.6023C130.678 38.8807 130.607 39.1364 130.465 39.3693C130.329 39.6023 130.144 39.7898 129.911 39.9318C129.684 40.0682 129.428 40.1364 129.144 40.1364Z"
+            fill="white"
+          />
+          <ellipse cx="28.1373" cy="29" rx="28.1373" ry="29" fill="#023047" />
+          <path
+            d="M24.9883 47H19.5977C19.4414 47 19.3633 46.9219 19.3633 46.7656L19.457 13.7891C19.457 13.6641 19.5195 13.6016 19.6445 13.6016H28.8789C31.8164 13.6016 34.1367 14.5 35.8398 16.2969C37.5586 18.0781 38.418 20.5078 38.418 23.5859C38.418 25.8359 37.9727 27.7969 37.082 29.4688C36.1758 31.125 35.0039 32.4062 33.5664 33.3125C32.1289 34.2188 30.5664 34.6719 28.8789 34.6719H25.2227V46.7656C25.2227 46.9219 25.1445 47 24.9883 47ZM28.8789 19.2969L25.2227 19.3438V28.8594H28.8789C29.8945 28.8594 30.7773 28.375 31.5273 27.4062C32.2773 26.4219 32.6523 25.1484 32.6523 23.5859C32.6523 22.3359 32.3164 21.3125 31.6445 20.5156C30.9727 19.7031 30.0508 19.2969 28.8789 19.2969Z"
+            fill="white"
+          />
+        </svg>
+      </div>
+      <div class="nav__links show" id="nav-links">
+        <nav>
+          <li>
+            <ul>
+              <a
+                href="./index.html"
+                target="_parent"
+                rel="noopener noreferrer"
+                class="nav__link"
+                >home</a
+              >
+            </ul>
+            <ul>
+              <a
+                href="./About.html"
+                target="_parent"
+                rel="noopener noreferrer"
+                class="nav__link"
+                >about Me</a
+              >
+            </ul>
+            <ul>
+              <a
+                href="./skills.html"
+                target="_parent"
+                rel="noopener noreferrer"
+                class="nav__link active"
+                >skills</a
+              >
+            </ul>
+            <ul>
+              <a
+                href="./project.html"
+                target="_parent"
+                rel="noopener noreferrer"
+                class="nav__link"
+                >project</a
+              >
+            </ul>
+            <ul>
+              <a
+                href="./contact.html"
+                target="_parent"
+                rel="noopener noreferrer"
+                class="nav__link "
+                >contact</a
+              >
+            </ul>
+            <ul>
+              <button id="login-button">
+                <a
+                  href="./login.html"
+                  target="_parent"
+                  rel="noopener noreferrer"
+                  id="login__link"
+                  >login</a
+                >
+              </button>
+            </ul>
+          </li>
+          <div class="nav__close" id="nav-close">
+            <!-- close icon -->
+            <i class="ri-close-line"></i>
+          </div>
+        </nav>
+      </div>
+      <div class="nav__buttons">
+        <div class="nav__toggle" id="nav-toggle">
+          <i class="ri-menu-4-line"></i>
+        </div>
+      </div>
+      <div class="theme cont">
+        <i class="ri-moon-line change-theme" id="theme-button"></i>
+      </div>
+    </header>
+    <main class="container">
+      <section class="skills">
+        <div
+          class="skills_section animated-element"
+          data-aos="fade-down"
+          data-aos-duration="1000"
+        >
+          <div class="skills_head">
+            <h2>My Skills</h2>
+            <p>Here is my skills to represent my Expertise</p>
+          </div>
+
+          <div
+            class="skills_main animated-element"
+            data-aos="fade-right"
+            data-aos-duration="2000"
+          >
+            <div class="skill_bar">
+              <div class="info">
+                <p>HTML</p>
+                <p class="value">100%</p>
+              </div>
+              <div class="bar">
+                <span class="html"></span>
+              </div>
             </div>
-            <div class="nav__buttons">
-                <div class="nav__toggle" id="nav-toggle">
-                    <i class="ri-menu-4-line"></i>
-                </div>
-        </div>
-        <div class="theme">
-            <i class="ri-moon-line change-theme " id="theme-button"></i>
-        </div>
-        </div>
-        <div class="skills">
-            <div class="skills_section animated-element" data-aos="fade-down" data-aos-duration="1000">
-                <div class="skills_head">
-                    <h2>My Skills</h2>
-                    <p>Here is my skills to represent my Expertise</p>
-                </div>
-        
-                <div class="skills_main animated-element" data-aos="fade-right" data-aos-duration="2000">
-                    <div class="skill_bar">
-                        <div class="info">
-                            <p>HTML</p>
-                            <P class="value">100%</P>
-                        </div>
-                        <div class="bar">
-                            <span class="html"></span>
-                        </div>
-                    </div>
-                    <div class="skill_bar animated-element" data-aos="fade-left" data-aos-duration="3000">
-                        <div class="info">
-                            <p>CSS</p>
-                            <P>85%</P>
-                        </div>
-                        <div class="bar">
-                            <span class="css"></span>
-                        </div>
-                    </div>
-                    <div class="skill_bar">
-                        <div class="info">
-                            <p>Java Script</p>
-                            <P>80%</P>
-                        </div>
-                        <div class="bar">
-                            <span class="js"></span>
-                        </div>
-                    </div>
-                    <div class="skill_bar animated-element" data-aos="fade-left" data-aos-duration="3000">
-                        <div class="info">
-                            <p>React js</p>
-                            <P>75%</P>
-                        </div>
-                        <div class="bar">
-                            <span class="react"></span>
-                        </div>
-                    </div>
-                    <div class="skill_bar">
-                        <div class="info">
-                            <p>Node js</p>
-                            <P>70%</P>
-                        </div>
-                        <div class="bar">
-                            <span class="node"></span>
-                        </div>
-                    </div>
-                    <div class="skill_bar animated-element" data-aos="fade-left" data-aos-duration="3000">
-                        <div class="info">
-                            <p>Express js</p>
-                            <P>65%</P>
-                        </div>
-                        <div class="bar">
-                            <span class="express"></span>
-                        </div>
-                    </div>
-                    <div class="skill_bar">
-                        <div class="info">
-                            <p>Mongo DB</p>
-                            <P>60%</P>
-                        </div>
-                        <div class="bar">
-                            <span class="mongo"></span>
-                        </div>
-                    </div>
-                </div>
+            <div
+              class="skill_bar animated-element"
+              data-aos="fade-left"
+              data-aos-duration="3000"
+            >
+              <div class="info">
+                <p>CSS</p>
+                <p>85%</p>
+              </div>
+              <div class="bar">
+                <span class="css"></span>
+              </div>
             </div>
+            <div class="skill_bar">
+              <div class="info">
+                <p>Java Script</p>
+                <p>80%</p>
+              </div>
+              <div class="bar">
+                <span class="js"></span>
+              </div>
+            </div>
+            <div
+              class="skill_bar animated-element"
+              data-aos="fade-left"
+              data-aos-duration="3000"
+            >
+              <div class="info">
+                <p>React js</p>
+                <p>75%</p>
+              </div>
+              <div class="bar">
+                <span class="react"></span>
+              </div>
+            </div>
+            <div class="skill_bar">
+              <div class="info">
+                <p>Node js</p>
+                <p>70%</p>
+              </div>
+              <div class="bar">
+                <span class="node"></span>
+              </div>
+            </div>
+            <div
+              class="skill_bar animated-element"
+              data-aos="fade-left"
+              data-aos-duration="3000"
+            >
+              <div class="info">
+                <p>Express js</p>
+                <p>65%</p>
+              </div>
+              <div class="bar">
+                <span class="express"></span>
+              </div>
+            </div>
+            <div class="skill_bar">
+              <div class="info">
+                <p>Mongo DB</p>
+                <p>60%</p>
+              </div>
+              <div class="bar">
+                <span class="mongo"></span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="footer">
-            <footer>
-                <div class="footer__icon">
-                    <a href="https://github.com/AimePazzo"><i class="ri-github-line"></i></a>
-                    <a href="https://twitter.com/Amie_patric17"><i class="ri-twitter-line"></i></a>
-                    <a href="www.linkedin.com/in/ndagijimana-patrick-393ba5226"><i class="ri-linkedin-box-line"></i></a>
-                    <a href="https://www.instagram.com/aimepatrick134/"><i class="ri-instagram-line"></i></a>
-                    
-                </div>
-                <div class="footer__rights">
-                    <p>&copy; All Rights Reserved By Aime Patrick</p>
-                </div>
-            </footer>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="footers">
+        <div class="footer__icon">
+          <a href="https://github.com/AimePazzo"
+            ><i class="ri-github-line"></i
+          ></a>
+          <a href="https://twitter.com/Amie_patric17"
+            ><i class="ri-twitter-line"></i
+          ></a>
+          <a href="www.linkedin.com/in/ndagijimana-patrick-393ba5226"
+            ><i class="ri-linkedin-box-line"></i
+          ></a>
+          <a href="https://www.instagram.com/aimepatrick134/"
+            ><i class="ri-instagram-line"></i
+          ></a>
         </div>
-    </div>
+        <div class="footer__rights">
+          <p>&copy; All Rights Reserved By Aime Patrick</p>
+        </div>
+      </div>
+    </footer>
     <script src="index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    // Initialize AOS with options
-    AOS.init({
-      once: true // Trigger animations only once
-    });
-  </script>
-</body>
+    <script>
+      // Initialize AOS with options
+      AOS.init({
+        once: true, // Trigger animations only once
+      });
+    </script>
+  </body>
 </html>

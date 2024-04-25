@@ -246,7 +246,7 @@ const handleSubmit = async () => {
   const navbar = document.querySelector('.navbar');
   const projectLink = document.querySelector('#project-link');
 
-  const UserToken = localStorage.getItem('token');
+  const UserToken = sessionStorage.getItem('token');
 
   if (!UserToken) {
     projectLink.style.display = "none";

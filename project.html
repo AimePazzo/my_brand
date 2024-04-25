@@ -197,7 +197,6 @@
           const projectButton = document.createElement("a");
           projectButton.classList.add("project__button", "button");
           projectButton.addEventListener("click", () => {
-            console.log("projectButton clicked");
             projectButton.href = `./singleProject.html?id=${element._id}`;
           });
           // projectButton.href = "https://github.com/";
@@ -253,10 +252,9 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const UserToken = localStorage.getItem('token');
-
+    const UserToken = sessionStorage.getItem('token');
     if (!UserToken) {
-      window.location.href = 'login.html';
+      window.location.href = './login.html';
     }
   });
 </script>

@@ -23,7 +23,7 @@ const navMenu = document.getElementById("nav-links"),
   navClose = document.getElementById("nav-close"),
   projectLink = document.getElementById("project-link"),
   loginButton = document.getElementById("login-button");
-  
+
 
 // MENU SHOW
 if (navToggle) {
@@ -212,7 +212,12 @@ const validateInputs = () => {
 const handleSubmit = async () => {
   const isValid = validateInputs();
   if (!isValid) { return }
-  let contactData = { userName: nameContact.value, email: emailContact.value, subject: subjectContact.value, message: messageContact.value }
+  let contactData = {
+    userName: nameContact.value,
+    email: emailContact.value,
+    subject: subjectContact.value,
+    message: messageContact.value
+  }
   try {
     const respond = await fetch("https://backend-mybrand-2y5k.onrender.com/api/v1/contact/send-message", {
       method: "POST",
@@ -223,10 +228,10 @@ const handleSubmit = async () => {
     })
     if (!respond.ok) {
       const data = await respond.json();
-      showToast("❌ "+ data.message, "error");
+      showToast("❌ " + data.message, "error");
     } else {
       const data = await respond.json();
-      showToast(`<i class="ri-checkbox-circle-fill" style="color:green !important"></i> `+data.message, "success");
+      showToast(`<i class="ri-checkbox-circle-fill" style="color:green !important"></i> ` + data.message, "success");
       setTimeout(() => {
         nameContact.value = ''
         emailContact.value = ''
@@ -242,7 +247,7 @@ const handleSubmit = async () => {
 
 }
 
- function checkUserLogin() {
+function checkUserLogin() {
   const navbar = document.querySelector('.navbar');
   const projectLink = document.querySelector('#project-link');
 

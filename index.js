@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
       this.classList.add("active");
     });
   });
+  checkUserLogin();
 });
 
 // SHOW MENU
@@ -20,7 +21,9 @@ document.addEventListener("DOMContentLoaded", function () {
 const navMenu = document.getElementById("nav-links"),
   navToggle = document.getElementById("nav-toggle"),
   navClose = document.getElementById("nav-close"),
+  projectLink = document.getElementById("project-link"),
   loginButton = document.getElementById("login-button");
+  
 
 // MENU SHOW
 if (navToggle) {
@@ -72,6 +75,29 @@ themeButton.addEventListener("click", () => {
   localStorage.setItem("selected-icon", getCurrentIcon());
 });
 
+function showToast(message, type) {
+  const toast = document.createElement("div");
+  toast.classList.add("toast");
+  toast.innerHTML = message;
+
+  if (type === "error") {
+    toast.classList.add("error");
+  } else if (type === "success") {
+    toast.classList.add("success");
+  } else if (type === 'info') {
+    toast.classList.add("info");
+  }
+  else {
+    console.error("Unknown toast type:", type);
+    return;
+  }
+
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    toast.remove();
+  }, 3000);
+}
 
 
 
@@ -111,8 +137,8 @@ const isValidEmail = (email) => {
 
 
 const resetErrors = () => {
-  const errorElements = document.querySelectorAll('.errors');
-  const successElements = document.querySelectorAll('.successs');
+  const errorElements = document.querySelectorAll('.error');
+  const successElements = document.querySelectorAll('.success');
 
   errorElements.forEach((e) => {
     e.innerText = ''
@@ -183,21 +209,52 @@ const validateInputs = () => {
 };
 
 
-let messageData = [];
-
-const handleSubmit = () => {
+const handleSubmit = async () => {
   const isValid = validateInputs();
   if (!isValid) { return }
-  let user = { username: nameContact.value, email: emailContact.value, subject: subjectContact.value, message: messageContact.value }
-  messageData.push(user);
-  console.log(messageData);
-  localStorage.setItem('contactInfo', JSON.stringify(messageData));
-  alert("Your Message has been sent successfully!");
-  nameContact.value = ''
-  emailContact.value = ''
-  subjectContact.value = ''
-  messageContact.value = ''
-  resetErrors()
+  let contactData = { userName: nameContact.value, email: emailContact.value, subject: subjectContact.value, message: messageContact.value }
+  try {
+    const respond = await fetch("https://backend-mybrand-2y5k.onrender.com/api/v1/contact/send-message", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(contactData)
+    })
+    if (!respond.ok) {
+      const data = await respond.json();
+      showToast("❌ "+ data.message, "error");
+    } else {
+      const data = await respond.json();
+      showToast(`<i class="ri-checkbox-circle-fill" style="color:green !important"></i> `+data.message, "success");
+      setTimeout(() => {
+        nameContact.value = ''
+        emailContact.value = ''
+        subjectContact.value = ''
+        messageContact.value = ''
+        resetErrors()
+        // emailjs.sendForm('service_kzutdjf','template_h8w87eq','#contact-form','mbdQfTjlWxjvdh2ij')
+      }, 3000);
+    }
+  } catch (error) {
+    showToast(error.message, "error");
+  }
+
 }
+
+ function checkUserLogin() {
+  const navbar = document.querySelector('.navbar');
+  const projectLink = document.querySelector('#project-link');
+
+  const UserToken = localStorage.getItem('token');
+
+  if (!UserToken) {
+    projectLink.style.display = "none";
+  } else {
+    projectLink.style.display = "block";
+  }
+};
+
+
 
 

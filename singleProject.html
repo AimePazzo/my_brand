@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Single Project Page</title>
+    <link rel="stylesheet" href="index.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,16 +14,73 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="shortcut icon" href="img/icon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="shortcut icon" href="img/icon.svg" type="image/x-icon" />
     <link
       href="https://fonts.googleapis.com/css2?family=Actor&family=Koulen&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
-    <link rel="stylesheet" href="index.css" />
-    <title>My Portfolio - About</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+    />
+    <style>
+      .single-project {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .project__details {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .project__details img {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+      }
+
+      .project__details h2 {
+        margin-top: 20px;
+      }
+
+      .project__details p {
+        line-height: 1.6;
+      }
+
+      form {
+        margin-top: 20px;
+        width: 50%;
+        height: max-content;
+        margin-bottom: 2rem;
+      }
+
+      form h3 {
+        margin-bottom: 10px;
+      }
+
+      form div {
+        margin-bottom: 10px;
+      }
+
+      form label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      form input[type="text"],
+      form textarea {
+        width: 100%;
+        padding: 8px;
+      }
+
+      form select {
+        width: 100%;
+        padding: 8px;
+      }
+    </style>
   </head>
   <body>
     <header class="header">
@@ -61,7 +120,7 @@
                 href="./About.html"
                 target="_parent"
                 rel="noopener noreferrer"
-                class="nav__link active"
+                class="nav__link"
                 >about Me</a
               >
             </ul>
@@ -79,7 +138,7 @@
                 href="./project.html"
                 target="_parent"
                 rel="noopener noreferrer"
-                class="nav__link"
+                class="nav__link active"
                 >project</a
               >
             </ul>
@@ -119,33 +178,41 @@
         <i class="ri-moon-line change-theme" id="theme-button"></i>
       </div>
     </header>
-    <main class="container">
-      <!--  HEADER -->
-      
-
-      <div class="about">
-        <div class="about__left animated-element" data-aos="fade-right" data-aos-duration="2000">
-          <div class="about__img">
-            <img src="./img/IMG_2949.jpg" alt="" />
-            <div class="about__shadow"></div>
+    <main>
+      <section>
+        <div class="single-project">
+          <div id="project__details">
             
-              <div class="about__box"></div>
-              <div class="geomatric-box"></div>
           </div>
+          <form id="comment-form">
+            <div>
+              <div class="rating-box">
+                <h2>How was your experience?</h2>
+                <div class="stars">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                </div>              
+            </div>
+            <div class="comment">
+              
+            </div>
+            <h3>Leave a Comment</h3>
+            <div>
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" required />
+            </div>         
+            </div>
+            <div>
+              <label for="comment">Comment:</label>
+              <textarea id="comment" name="comment" required></textarea>
+            </div>
+            <button type="submit">Submit</button>
+          </form>
         </div>
-        <div class="about__right animated-element" data-aos="fade-down" data-aos-duration="1000">
-          <h1>About Me</h1>
-          <p>
-            Passionate about creating Web Pages with UI/UX User Interface,I have
-            years of experience and many clients are happy with the projects
-            carried out.
-          </p>
-          <button class="btn animated-element" data-aos="fade-up" data-aos-duration="3000">
-            <i class="ri-phone-fill"></i>
-            <a href="contact.html">Contact Me</a>
-          </button>
-        </div>
-      </div>
+      </section>
     </main>
     <footer class="footer">
       <div class="footers">
@@ -168,13 +235,55 @@
         </div>
       </div>
     </footer>
-    <script src="index.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    // Initialize AOS with options
-    AOS.init({
-      once: true // Trigger animations only once
-    });
-  </script>
+    <script src="./index.js"></script>
+    <script>
+      const name = document.getElementById('name'),
+      comment = document.getElementById('comment'),
+      form = document.getElementById('comment-form');
+      const stars = document.querySelectorAll('.stars i');
+
+      form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  // const rating = document.querySelector('input[name="rating"]:checked').value;
+  const commentValue = comment.value;
+  const nameValue = name.value;
+  const newComment = document.querySelector('.comment');
+  const commentDiv = document.createElement('div');
+  commentDiv.innerHTML = `
+    <h3>${nameValue}</h3>
+    <p>${commentValue}</p>
+  `;
+  newComment.appendChild(commentDiv);
+  nameValue = ''
+  commentValue = ''
+});
+
+      stars.forEach((star,index1) => {
+        star.addEventListener('click',()=>{
+          stars.forEach((star,index2) => {
+            if(index2 <= index1){
+              star.classList.add('active');
+            }else{
+              star.classList.remove('active');
+            }
+          })
+      })
+        }
+      );
+      const projectId = new URLSearchParams(window.location.search).get("id");
+      fetch(`https://backend-mybrand-2y5k.onrender.com/api/v1/project/get-project/${projectId}`)
+        .then((response) => response.json())
+        .then((data) => {
+          // Use the project data here
+          const projectData = document.getElementById("project__details");
+          projectData.innerHTML = `
+          <img src="${data.images[0].url}" alt="Project Image" />
+          <h3>${data.field}</h3>
+          <h1>${data.title}</h1>
+          <p>${data.description}</p>
+          `;
+        })
+        .catch((error) => console.error("Error:", error)); // This will log the project ID
+    </script>
   </body>
 </html>

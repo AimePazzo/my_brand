@@ -161,7 +161,7 @@ a {
   font-size: 30px;
   padding-left: 2.5rem;
   word-break: normal;
-  font-family: actor;
+  font-family: "actor";
   color: #0b3448f1;
   text-align: initial;
 }
@@ -609,6 +609,7 @@ a {
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
+  padding-block-end: 20px;
 }
 
 .project__card {
@@ -635,7 +636,7 @@ a {
 .project__button {
   position: absolute;
   right: 1rem;
-  bottom: -1.5rem;
+  bottom: -0.5rem;
   padding: 1rem;
 }
 
@@ -698,6 +699,41 @@ a {
 
 .project__card:hover {
   background-color: white;
+}
+
+
+#project__details img{
+  width: 80%;
+}
+
+.rating-box header {
+  font-size: 22px;
+  color: #0c0c0c;
+  font-weight: bold;
+  margin-bottom: 20px;
+
+}
+
+.rating-box .stars {
+  gap: 10px;
+}
+
+.stars i{
+  color: #edf2f0;
+  font-size: 35px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.stars i.active{
+  color: yellow;
+}
+
+.comment p{
+  font-size: 20px;
+  color: #0c0c0c;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .button {
@@ -1211,16 +1247,10 @@ button[type="submit"]:hover {
   border-color: #ff3860 !important;
 }
 
-.sms.error {
-  color: #ff3860;
-  font-size: 9px;
-  height: 13px;
-}
 .login__group .error,
 .signup__group .errors {
   color: #ff3860;
-  font-size: 9px;
-  height: 13px;
+  font-size: 16px;
 }
 
 .contact__box input {
@@ -1238,13 +1268,26 @@ button[type="submit"]:hover {
   position: absolute;
   top: 4rem;
   color: #ff3860;
-  font-size: 9px;
-  height: 13px;
+  font-size: 16px;
 }
 .contact__area .error {
   position: absolute;
   top: 10.5rem;
 }
+
+.toast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #747373;
+    font-weight: bold;
+    z-index: 9999;
+  }
+  
 
 /* FOOTER */
 .footer {
@@ -1452,7 +1495,7 @@ body.dark-theme {
 .dark-theme .project__link:hover {
   color: var(--first-color);
 }
-.dark-theme .project__link:hover i {
+ .dark-theme .project__link:hover i {
   color: var(--first-color);
 }
 .dark-theme .desc::after {
@@ -1474,7 +1517,7 @@ body.dark-theme {
   color: var(--text-color);
 }
 
-.dark-theme :is(button:hover a, h2) {
+.dark-theme :is(button:hover a, h2,.single-project) {
   color: var(--light-text-color);
 }
 

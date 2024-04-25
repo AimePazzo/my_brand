@@ -88,7 +88,7 @@
                 >skills</a
               >
             </ul>
-            <ul>
+            <ul id="project-link">
               <a
                 href="./project.html"
                 target="_parent"
@@ -140,35 +140,40 @@
               <h1>Login</h1>
               <div class="login__form">
                 <form action="" id="form">
-                  <div class="login__group">
-                    <label for="email">Email</label><br />
+                  <div class="login__main">
+                    <div class="login__group">
+                      <label for="email">Email</label><br />
 
-                    <input
-                      type="text"
-                      name="Email"
-                      id="email"
-                      value=""
-                      placeholder="example@gmail.com"
-                    />
+                      <input
+                        type="text"
+                        name="Email"
+                        id="email"
+                        value=""
+                        placeholder="example@gmail.com"
+                        autocomplete="email"
+                      />
 
-                    <div class="error"></div>
-                  </div>
-                  <div class="login__group">
-                    <label for="password">Password</label><br />
-                    <input
-                      type="password"
-                      name="password"
-                      id="password"
-                      value=""
-                      placeholder="At least 8 characters"
-                    />
-                    <i class="ri-eye-line login__icon" id="toggle-login"></i>
-                    <div class="error" id="sms"></div>
+                      <div class="error"></div>
+                    </div>
+                    <div class="login__group">
+                      <label for="password">Password</label><br />
+                      <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        value=""
+                        placeholder="At least 8 characters"
+                        autocomplete="current-password"
+                      />
+                      <i class="ri-eye-line login__icon" id="toggle-login"></i>
+                      <div class="error"></div>
+                    </div>
                   </div>
                   <p class="link"><a href="">Forgot Password?</a></p>
-                  <div class="sms">
-                    <button type="submit" id="submit">Sign in</button>
+                  <div class="login__msg">
+                    <p id="login__sms"></p>
                   </div>
+                  <button type="submit" id="submit">Sign in</button>
                   <p class="lines">OR</p>
                   <div class="login__button">
                     <button type="button">
@@ -202,49 +207,53 @@
                 <div class="signup__main">
                   <div class="signup__left">
                     <div class="signup__group">
-                      <label for="firstname">First Name</label><br />
+                      <label for="First__Name">First Name</label><br />
                       <input
                         type="text"
                         name="First Name"
                         id="First__Name"
                         value=""
                         placeholder="First Name"
+                        autocomplete="given-name"
                       />
 
                       <div class="errors"></div>
                     </div>
                     <div class="signup__group">
-                      <label for="lastname">Last Name</label><br />
+                      <label for="last__name">Last Name</label><br />
                       <input
                         type="text"
                         name="last__name"
                         id="last__name"
                         value=""
                         placeholder="Last Name"
+                        autocomplete="family-name"
                       />
 
                       <div class="errors"></div>
                     </div>
                     <div class="signup__group">
-                      <label for="username">User Name</label><br />
+                      <label for="user__name">User Name</label><br />
                       <input
                         type="text"
                         name="user__name"
                         id="user__name"
                         value=""
                         placeholder="Choose Your User Name"
+                        autocomplete="username"
                       />
 
                       <div class="errors"></div>
                     </div>
                     <div class="signup__group">
-                      <label for="email">Email</label><br />
+                      <label for="signup__email">Email</label><br />
                       <input
                         type="text"
                         name="email"
                         id="signup__email"
                         value=""
                         placeholder="example@12gmail.com"
+                        autocomplete="email"
                       />
 
                       <div class="errors"></div>
@@ -252,13 +261,14 @@
                   </div>
                   <div class="signup__right">
                     <div class="signup__group">
-                      <label for="password">Password</label><br />
+                      <label for="password1">Password</label><br />
                       <input
                         type="password"
                         name="password"
                         id="password1"
                         value=""
                         placeholder="At least 8 characters"
+                        autocomplete="new-password"
                       />
                       <i class="ri-eye-line" id="toggle-password"></i>
                       <div class="errors"></div>
@@ -271,6 +281,7 @@
                         id="password2"
                         value=""
                         placeholder="At least 8 characters"
+                        autocomplete="new-password"
                       />
                       <i class="ri-eye-line" id="toggle-password2"></i>
                       <div class="errors"></div>
@@ -291,10 +302,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="sms1">
-                  <div class="errors sms"></div>
-                  <button type="submit" id="submit2">SignUp</button><br />
-                </div>
+                <button type="submit" id="submit2">SignUp</button><br />
               </form>
 
               <p>
@@ -352,8 +360,9 @@
       const form = document.getElementById("form");
       const signupForm = document.getElementById("signupForm");
       const email = document.getElementById("email");
-      const password = document.getElementById("password"),
-        sms = document.getElementById("sms");
+      const password = document.getElementById("password");
+      // sms = document.getElementById("sms");
+      const loginSms = document.getElementById("login__sms");
 
       const isError = (element, message) => {
         const inputControl = element.parentElement;
@@ -363,6 +372,27 @@
         inputControl.classList.add("errors");
         inputControl.classList.remove("successs");
       };
+
+      function showToast(message, type) {
+        const toast = document.createElement("div");
+        toast.classList.add("toast");
+        toast.textContent = message;
+
+        if (type === "error") {
+          toast.classList.add("error");
+        } else if (type === "success") {
+          toast.classList.add("success");
+        } else {
+          console.error("Unknown toast type:", type);
+          return;
+        }
+
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+          toast.remove();
+        }, 3000);
+      }
 
       const isSuccess = (element) => {
         const inputControl = element.parentElement;
@@ -419,33 +449,13 @@
         let loginUser = [];
         const isValid = validateLoginInputs();
         if (isValid) {
-          // Retrieve existing user data from local storage
-          const existingUserData =
-            JSON.parse(localStorage.getItem("UserData")) || [];
-          // Find user with matching email and password
-          const foundUser = existingUserData.find(
-            (user) =>
-              user.email === email.value && user.password === password.value
-          );
-
-          if (foundUser) {
-            let User = {
-              email: email.value,
-              password: password.value,
-            };
-            loginUser.push(User);
-            console.log(loginUser);
-            localStorage.setItem("LoginUser", JSON.stringify(loginUser));
-
-            alert("Login successful!");
-            resetErrors();
-            email.value = "";
-            password.value = "";
-          } else {
-            setError(sms, "Not exist");
-          }
+          loginFormSubmit();
+          resetErrors();
+          // email.value = "";
+          // password.value = "";
+        } else {
+          showToast("Invalid email or password", "error");
         }
-        return;
       };
 
       // SIGNUP VALIDATION
@@ -455,7 +465,7 @@
       const signupEmail = document.getElementById("signup__email");
       const signupPassword = document.getElementById("password1");
       const signupPassword2 = document.getElementById("password2");
-      const signSms = document.getElementById(".sms");
+      const signSms = document.getElementById("signup__sms");
 
       const validateSignup = () => {
         const firstNameValue = signupFirst.value.trim();
@@ -464,7 +474,7 @@
         const signupEmailValue = signupEmail.value.trim();
         const passwordValue = signupPassword.value.trim();
         const confirmPasswordValue = signupPassword2.value.trim();
-        const re = /^[a-zA-z]+$/;
+        const re = /^[a-zA-z ]+$/;
         let isValid = true;
 
         if (firstNameValue === "") {
@@ -531,61 +541,13 @@
         return isValid;
       };
 
-      // let newUsers = [];
-
-      const handleSubmitSignup = () => {
+      const handleSubmitSignup = async () => {
         const isValid = validateSignup();
         if (!isValid) {
           return;
         }
-
-        // Retrieve existing user data from local storage
-        const existingUserData =
-          JSON.parse(localStorage.getItem("UserData")) || [];
-
-        // Check if the email already exists in the existing data
-        const existingUser = existingUserData.find(
-          (user) =>
-            user.email === signupEmail.value ||
-            user.UserName === signupUsername.value
-        );
-
-        if (existingUser) {
-          // Check if email already exists
-          if (existingUser.email === signupEmail.value) {
-            isError(signSms, "Email already exists");
-          }
-
-          // Check if username already exists
-          if (existingUser.UserName === signupUsername.value) {
-            isError(signSms, "Username already exists");
-          }
-
-          return;
-        }
-
-        // If email does not exist, proceed to add the new user
-        const newUser = {
-          FirstName: signupFirst.value,
-          LastName: signupLast.value,
-          UserName: signupUsername.value,
-          email: signupEmail.value,
-          password: signupPassword.value,
-        };
-
-        // Add the new user to the existing data
-        existingUserData.push(newUser);
-        console.log(existingUserData);
-        // Store the updated user data back to local storage
-        localStorage.setItem("UserData", JSON.stringify(existingUserData));
-
+        signupFormSubmit();
         resetErrorss();
-        signupEmail.value = "";
-        signupFirst.value = "";
-        signupLast.value = "";
-        signupUsername.value = "";
-        signupPassword.value = "";
-        signupPassword2.value = "";
       };
       const toggleLogin = document.getElementById("toggle-login");
       const togglePassword1 = document.getElementById("toggle-password");
@@ -638,33 +600,103 @@
         handleSubmitSignup();
       });
 
-      function checkForErrorAndRemove() {
-        const loginGroup = document.querySelector(".login__group");
-        const signupGroup = document.querySelector(".signup__group");
-        const loginError = loginGroup.classList.contains("error");
-        const signupError = signupGroup.classList.contains("errors");
-        if (loginError) {
-          const elementsWithErrors = loginGroup.querySelectorAll(".error");
-          loginGroup.classList.remove("error");
-          elementsWithErrors.forEach((element) => {
-            element.style.display = "none";
-          });
-          console.log("typing...");
+      async function checkForErrorAndRemove(input) {
+        const parentGroup = input.closest(".login__group, .signup__group");
+        if (!parentGroup) return; // No parent group found, exit
+
+        const errorClass = parentGroup.classList.contains("error")
+          ? "error"
+          : "errors";
+        const elementsWithErrors = parentGroup.querySelectorAll(
+          "." + errorClass
+        );
+        console.log(elementsWithErrors)
+
+
+        parentGroup.classList.remove(errorClass);
+        elementsWithErrors.forEach((element) => {
+          element.style.display = "none";
+          element.classList.remove("." + errorClass);
+        });
+      }
+      signupForm.addEventListener("input", (event) => {
+        const target = event.target;
+        console.log(target);
+        if (target.tagName === "INPUT" && target.closest(".signup__main")) {
+          checkForErrorAndRemove(target);
         }
-        if (signupError) {
-          const elementsWithErrors = signupGroup.querySelectorAll(".errors");
-          signupGroup.classList.remove("errors");
-          elementsWithErrors.forEach((element) => {
-            element.style.display = "none";
-          });
+      });
+      form.addEventListener("input", (event) => {
+        const target = event.target;
+
+        if (target.tagName === "INPUT" && target.closest(".login__main")) {
+          checkForErrorAndRemove(target);
+        }
+      });
+
+      async function signupFormSubmit() {
+        const UserData = {
+          firstName: signupFirst.value,
+          lastName: signupLast.value,
+          userName: signupUsername.value,
+          email: signupEmail.value,
+          password: signupPassword.value,
+        };
+
+        try {
+          const response = await fetch(
+            "https://backend-mybrand-2y5k.onrender.com/api/v1/user/signup",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(UserData),
+            }
+          );
+
+          if (response.ok) {
+            const data = await response.json();
+            showToast(data.message, "success");
+          } else {
+            const data = await response.json();
+
+            showToast(data.message, "error");
+          }
+        } catch (error) {
+          showToast("An error occurred while submitting the form.", "error");
         }
       }
-      const inputFields = document.querySelectorAll("input");
-      inputFields.forEach((input) => {
-        input.addEventListener("input", () => {
-          checkForErrorAndRemove();
-        });
-      });
+
+      async function loginFormSubmit() {
+        const UserData = {
+          email: email.value,
+          password: password.value,
+        };
+        try {
+          const user = await fetch("https://backend-mybrand-2y5k.onrender.com/api/v1/user/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(UserData),
+          });
+          if (!user.ok) {
+            const data = await user.json();
+            showToast(data.message, "error");
+          } else {
+            const data = await user.json();
+            const token = data.token;
+            sessionStorage.setItem("token", token);
+            showToast(data.message, "success");
+            setTimeout(() => {
+              window.location.href = "/index.html";
+            }, 3000);
+          }
+        } catch (error) {
+          showToast(error.message, "error");
+        }
+      }
     </script>
   </body>
 </html>

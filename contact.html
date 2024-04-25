@@ -81,7 +81,7 @@
                 >skills</a
               >
             </ul>
-            <ul>
+            <ul id="project-link">
               <a
                 href="./project.html"
                 target="_parent"
@@ -154,61 +154,63 @@
           >
             <h2 class="contact__title">Send Me A Message</h2>
             <form action="" class="contact__form" id="contact-form">
-              <div class="contact__group">
+              <div class="contact__main">
+                <div class="contact__group">
+                  <div class="contact__box">
+                    <input
+                      type="text"
+                      name="user_name"
+                      class="contact__input"
+                      value=""
+                      id="name"
+                      placeholder="Enter User Name"
+                    />
+                    <label for="name" class="contact__label">User Name</label>
+                    <br />
+                    <div class="error"></div>
+                  </div>
+  
+                  <div class="contact__box">
+                    <input
+                      type="text"
+                      name="user_email"
+                      class="contact__input"
+                      value=""
+                      id="email"
+                      placeholder="Email Address"
+                    />
+                    <label for="email" class="contact__label"
+                      >Email address</label
+                    >
+                    <br />
+                    <div class="error"></div>
+                  </div>
+                </div>
                 <div class="contact__box">
                   <input
                     type="text"
-                    name="user_name"
+                    name="user_subject"
                     class="contact__input"
+                    id="subject"
+                    placeholder="Subject"
                     value=""
-                    id="name"
-                    placeholder="Enter User Name"
                   />
-                  <label for="name" class="contact__label">User Name</label>
+                  <label for="subject" class="contact__label">Subject</label>
                   <br />
                   <div class="error"></div>
                 </div>
-
-                <div class="contact__box">
-                  <input
-                    type="text"
-                    name="user_email"
+                <div class="contact__box contact__area">
+                  <textarea
+                    name="user_message"
+                    id="message"
                     class="contact__input"
                     value=""
-                    id="email"
-                    placeholder="Email Address"
-                  />
-                  <label for="email" class="contact__label"
-                    >Email address</label
-                  >
+                    placeholder="Message"
+                  ></textarea>
+                  <label for="Message" class="contact__label">Message</label>
                   <br />
                   <div class="error"></div>
                 </div>
-              </div>
-              <div class="contact__box">
-                <input
-                  type="text"
-                  name="user_subject"
-                  class="contact__input"
-                  id="subject"
-                  placeholder="Subject"
-                  value=""
-                />
-                <label for="subject" class="contact__label">Subject</label>
-                <br />
-                <div class="error"></div>
-              </div>
-              <div class="contact__box contact__area">
-                <textarea
-                  name="user_message"
-                  id="message"
-                  class="contact__input"
-                  value=""
-                  placeholder="Message"
-                ></textarea>
-                <label for="Message" class="contact__label">Message</label>
-                <br />
-                <div class="error"></div>
               </div>
               <button class="contact__button button" onclick="handleSubmit()">
                 <i class="ri-send-plane-fill"></i> Send Message
@@ -315,37 +317,39 @@
         once: true,
       });
     </script>
+    
     <script>
       const contactForm = document.getElementById("contact-form");
       contactForm.addEventListener("submit",(e)=>{
         e.preventDefault();
-        handleSubmit
+        handleSubmit()
       });
-      function checkForErrorClass() {
-  const loginGroup = document.querySelector('.login__group');
-  return loginGroup.classList.contains('error');
-}
+      function checkForErrorAndRemove(input) {
+        const parentGroup = input.closest(".contact__box");
+        
+        if (!parentGroup) return; // No parent group found, exit
 
-function removeErrorClass() {
-  const loginGroup = document.querySelector('.login__group');
-  const elementsWithErrors = loginGroup.querySelectorAll('.error');
+        const errorClass = parentGroup.classList.contains("error")
+          ? "error"
+          : "errors";
+        
+        const elementsWithErrors = parentGroup.querySelectorAll(
+          "." + errorClass
+        );
+        console.log(elementsWithErrors)
 
-  loginGroup.classList.remove('error');
-  elementsWithErrors.forEach(element => {
-    element.style.display = 'none';
-  });
-}
-
-
-function handleInputChange(event) {
-  if (checkForErrorClass()) {
-    removeErrorClass();
-  }
-}
-const inputFields = document.querySelectorAll('input');
-inputFields.forEach(input => {
-  input.addEventListener('input', handleInputChange);
-});
+        parentGroup.classList.remove(errorClass);
+        elementsWithErrors.forEach((element) => {
+          element.style.display = "none";
+        });
+      }
+      contactForm.addEventListener("input", (event) => {
+        
+        const target = event.target;
+        if (target.tagName === "INPUT" || target.tagName ==='TEXTAREA'  && target.closest(".contact__main")) {
+          checkForErrorAndRemove(target);
+        }
+      });
     </script>
   </body>
 </html>

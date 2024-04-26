@@ -233,7 +233,7 @@
         </div>
       </div>
     </footer>
-    <script src="./index.js"></script>
+    <script src="./index.js" defer></script>
     <script>
       const comment = document.getElementById("comment"),
         form = document.getElementById("comment-form");
@@ -265,7 +265,7 @@
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + sessionStorage.getItem("token"),
+              Authorization: "Bearer " + localStorage.getItem("token"),
             },
             body: JSON.stringify({
               comment: comment.value,
@@ -301,7 +301,7 @@
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + sessionStorage.getItem("token"),
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         }
       )
@@ -322,7 +322,7 @@
         fetch(`https://backend-mybrand-2y5k.onrender.com/api/v1/comments/get-comments`,{
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + sessionStorage.getItem("token"),
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
           method: "GET",
         }).then((response) => response.json())

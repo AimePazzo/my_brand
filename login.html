@@ -687,11 +687,12 @@
           } else {
             const data = await user.json();
             const token = data.token;
-            sessionStorage.setItem("token", token);
+            localStorage.setItem("token", token);
+            console.log(data.message)
             showToast(data.message, "success");
             setTimeout(() => {
               window.location.href = "./index.html";
-            }, 3000);
+            }, 5000);
           }
         } catch (error) {
           showToast(error.message, "error");

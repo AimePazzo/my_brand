@@ -157,7 +157,7 @@
         </div>
       </div>
     </footer>
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
       // Initialize AOS with options
@@ -172,7 +172,7 @@
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           }
         );
@@ -246,18 +246,9 @@
 
       // Wait for the DOM to be fully loaded
 
-      document.addEventListener("DOMContentLoaded", function () {
+      // document.addEventListener("DOMContentLoaded", function () {
         GetProjects();
-      });
+      // });
     </script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const UserToken = sessionStorage.getItem('token');
-    if (!UserToken) {
-      window.location.href = './login.html';
-    }
-  });
-</script>
   </body>
 </html>

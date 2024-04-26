@@ -250,16 +250,25 @@ const handleSubmit = async () => {
 function checkUserLogin() {
   const navbar = document.querySelector('.navbar');
   const projectLink = document.querySelector('#project-link');
+  const UserToken = localStorage.getItem('token');
+  const loginLink = document.getElementById("login__link");
+  const loginButton = document.getElementById("login-button");
 
-  const UserToken = sessionStorage.getItem('token');
+  let isLoggedIn = false; // replace false with your logic to check if the user is logged in
 
   if (!UserToken) {
     projectLink.style.display = "none";
-  } else {
+  }
+   else {
     projectLink.style.display = "block";
+    isLoggedIn = true;
+    if (isLoggedIn) {
+      loginButton.textContent = "logout";
+      loginLink.href = "#";
+      loginButton.addEventListener("click",()=>{
+        localStorage.removeItem('token');
+        window.location.href = "./index.html";
+      })
+    }
   }
 };
-
-
-
-

@@ -238,7 +238,7 @@ const handleSubmit = async () => {
         subjectContact.value = ''
         messageContact.value = ''
         resetErrors()
-        // emailjs.sendForm('service_kzutdjf','template_h8w87eq','#contact-form','mbdQfTjlWxjvdh2ij')
+        emailjs.sendForm('service_kzutdjf','template_h8w87eq','#contact-form','mbdQfTjlWxjvdh2ij')
       }, 3000);
     }
   } catch (error) {

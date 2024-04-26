@@ -231,7 +231,7 @@ const handleSubmit = async () => {
       showToast("❌ " + data.message, "error");
     } else {
       const data = await respond.json();
-      showToast(`<i class="ri-checkbox-circle-fill" style="color:green !important"></i> ` + data.message, "success");
+      showToast("Message sent", "success");
       setTimeout(() => {
         nameContact.value = ''
         emailContact.value = ''

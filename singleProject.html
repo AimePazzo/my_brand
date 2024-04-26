@@ -14,7 +14,13 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="shortcut icon" href="img/icon.svg" type="image/x-icon" />
@@ -181,29 +187,21 @@
     <main>
       <section>
         <div class="single-project">
-          <div id="project__details">
-            
-          </div>
+          <div id="project__details"></div>
           <form id="comment-form">
             <div>
               <div class="rating-box">
-                <h2>How was your experience?</h2>
+                <h2 style="color: rgb(8, 58, 108);">How was your experience?</h2>
                 <div class="stars">
                   <i class="fa-solid fa-star"></i>
                   <i class="fa-solid fa-star"></i>
                   <i class="fa-solid fa-star"></i>
                   <i class="fa-solid fa-star"></i>
                   <i class="fa-solid fa-star"></i>
-                </div>              
-            </div>
-            <div class="comment">
-              
-            </div>
-            <h3>Leave a Comment</h3>
-            <div>
-              <label for="name">Name:</label>
-              <input type="text" id="name" name="name" required />
-            </div>         
+                </div>
+              </div>
+              <div class="comment"></div>
+              <h3>Leave a Comment</h3>
             </div>
             <div>
               <label for="comment">Comment:</label>
@@ -237,53 +235,118 @@
     </footer>
     <script src="./index.js"></script>
     <script>
-      const name = document.getElementById('name'),
-      comment = document.getElementById('comment'),
-      form = document.getElementById('comment-form');
-      const stars = document.querySelectorAll('.stars i');
+      const comment = document.getElementById("comment"),
+        form = document.getElementById("comment-form");
+      const stars = document.querySelectorAll(".stars i");
 
-      form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  // const rating = document.querySelector('input[name="rating"]:checked').value;
-  const commentValue = comment.value;
-  const nameValue = name.value;
-  const newComment = document.querySelector('.comment');
-  const commentDiv = document.createElement('div');
-  commentDiv.innerHTML = `
-    <h3>${nameValue}</h3>
-    <p>${commentValue}</p>
-  `;
-  newComment.appendChild(commentDiv);
-  nameValue = ''
-  commentValue = ''
-});
-
-      stars.forEach((star,index1) => {
-        star.addEventListener('click',()=>{
-          stars.forEach((star,index2) => {
-            if(index2 <= index1){
-              star.classList.add('active');
-            }else{
-              star.classList.remove('active');
+      const ratingBox = document.querySelector(".rating-box");
+      let activeStars = 0;
+      stars.forEach((star, index1) => {
+        star.addEventListener("click", () => {
+          stars.forEach((star, index2) => {
+            if (index2 <= index1) {
+              star.classList.add("active");
+            } else {
+              star.classList.remove("active");
             }
-          })
-      })
-        }
-      );
+          });
+          activeStars =
+            document.querySelectorAll(".stars i.active").length;
+          // You can use the value of activeStars as needed
+        });
+      });
+
+      form.addEventListener("submit", (e) => {
+        console.log(activeStars)
+        e.preventDefault();
+          fetch(
+          `https://backend-mybrand-2y5k.onrender.com/api/v1/comments/post-comment/${projectId}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + sessionStorage.getItem("token"),
+            },
+            body: JSON.stringify({
+              comment: comment.value,
+              rating: activeStars,
+            }),
+          }
+        )
+        .then((response) => response.json())
+        .then((data) => {
+          activeStars = 0
+          const newComment = document.querySelector(".comment");
+          const commentDiv = document.createElement("div");
+          commentDiv.innerHTML = `
+          <h2
+          style="color:#023047;
+          font-weight:700;
+          text-transform:capitalize;
+          margin-bottom:2px;" 
+          >${data.data.user.userName}</h2>
+            <p  style="color:#121417">${data.data.comment}</p>
+            <p style="color:#023047">${data.data.rating}</p>
+           `;
+          newComment.appendChild(commentDiv);
+        }).catch((error)=>{
+          console.log(error)
+        })
+      });
+
       const projectId = new URLSearchParams(window.location.search).get("id");
-      fetch(`https://backend-mybrand-2y5k.onrender.com/api/v1/project/get-project/${projectId}`)
+      console.log(projectId);
+      fetch(
+        `https://backend-mybrand-2y5k.onrender.com/api/v1/project/get-project/${projectId}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
+          },
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           // Use the project data here
+          console.log(data);
           const projectData = document.getElementById("project__details");
           projectData.innerHTML = `
           <img src="${data.images[0].url}" alt="Project Image" />
-          <h3>${data.field}</h3>
-          <h1>${data.title}</h1>
+          <h3 style="color:#006191;font-weight:700">${data.field}</h3>
+          <h1 style="color:#083247">${data.title}</h1>
           <p>${data.description}</p>
           `;
         })
         .catch((error) => console.error("Error:", error)); // This will log the project ID
+
+        fetch(`https://backend-mybrand-2y5k.onrender.com/api/v1/comments/get-comments`,{
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
+          },
+          method: "GET",
+        }).then((response) => response.json())
+        .then((data) =>{
+          console.log(data)
+        const newComment = document.querySelector(".comment");
+        data.data.forEach((comment)=>{
+            const commentDiv = document.createElement("div");
+            commentDiv.innerHTML = `
+          <h2 style="color:#023047;
+          font-weight:700;
+          text-transform:capitalize;
+          margin-bottom:2px;
+          ">${comment.user.userName}</h2>
+            <p style="text-transform:capitalize;
+            color:#121417">${comment.comment}</p>
+            <p style="color:#023047">${comment.rating}</p>
+           `;
+           newComment.appendChild(commentDiv);
+          })
+          
+        }).catch((err) =>{
+          console.log(err)
+        })
     </script>
   </body>
 </html>

@@ -243,7 +243,6 @@
       const comment = document.getElementById("comment"),
         form = document.getElementById("comment-form");
       const stars = document.querySelectorAll(".stars i");
-
       const ratingBox = document.querySelector(".rating-box");
       let activeStars = 0;
       stars.forEach((star, index1) => {
@@ -280,6 +279,7 @@
         )
           .then((response) => response.json())
           .then((data) => {
+            comment.value = ""
             hideLoader();
             console.log(data);
             if (data.status === "Approval") {
@@ -351,6 +351,7 @@
         .then((data) => {
           const commentData = data
           hideLoader();
+          if(commentData.data.status === "Approval"){
           if(commentData != null && commentData.data.length > 1) {
           console.log(commentData.data);
           const newComment = document.querySelector(".comment");
@@ -384,7 +385,7 @@
             newComment.appendChild(commentDiv);
         }
         }
-        )
+        })
         .catch((err) => {
           console.log(err);
         });

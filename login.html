@@ -132,6 +132,10 @@
         <i class="ri-moon-line change-theme" id="theme-button"></i>
       </div>
     </header>
+    <div class="loading-spinner" id="loading-spinner">
+      <img src="./img/Settings.gif" alt="Loading Spinner">
+      <p>Please wait....</p>
+  </div>
     <main class="container">
       <section class="login__container">
         <div class="login">
@@ -344,6 +348,7 @@
       });
     </script>
     <script>
+      const signupButton = document.getElementById("signup-popup")
       document
         .getElementById("signup-link")
         .addEventListener("click", function (e) {
@@ -635,6 +640,7 @@
       });
 
       async function signupFormSubmit() {
+        showLoader();
         const UserData = {
           firstName: signupFirst.value,
           lastName: signupLast.value,
@@ -645,36 +651,41 @@
 
         try {
           const response = await fetch(
-            "https://backend-mybrand-2y5k.onrender.com/api/v1/user/signup",
+            "https://backend-mybrand-xea6.onrender.com/api/v1/user/signup",
             {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
+                
               },
               body: JSON.stringify(UserData),
             }
           );
 
           if (response.ok) {
+            hideLoader();
             const data = await response.json();
             showToast(data.message, "success");
+            signupButton.classList.remove("active")
           } else {
+            hideLoader()
             const data = await response.json();
-
             showToast(data.message, "error");
           }
         } catch (error) {
           showToast("An error occurred while submitting the form.", "error");
+          hideLoader()
         }
       }
 
       async function loginFormSubmit() {
+        showLoader();
         const UserData = {
           email: email.value,
           password: password.value,
         };
         try {
-          const user = await fetch("https://backend-mybrand-2y5k.onrender.com/api/v1/user/login", {
+          const user = await fetch("https://backend-mybrand-xea6.onrender.com/api/v1/user/login", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -682,20 +693,24 @@
             body: JSON.stringify(UserData),
           });
           if (!user.ok) {
+            hideLoader();
             const data = await user.json();
             showToast(data.message, "error");
           } else {
+            hideLoader();
             const data = await user.json();
             const token = data.token;
             localStorage.setItem("token", token);
             console.log(data.message)
-            showToast(data.message, "success");
+            showToast("login successful", "success");
             setTimeout(() => {
               window.location.href = "./index.html";
             }, 5000);
           }
         } catch (error) {
           showToast(error.message, "error");
+          hideLoader()
+
         }
       }
     </script>

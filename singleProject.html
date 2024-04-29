@@ -184,6 +184,10 @@
         <i class="ri-moon-line change-theme" id="theme-button"></i>
       </div>
     </header>
+    <div class="loading-spinner" id="loading-spinner">
+      <img src="./img/Settings.gif" alt="Loading Spinner" />
+      <p>Please wait....</p>
+    </div>
     <main>
       <section>
         <div class="single-project">
@@ -191,7 +195,7 @@
           <form id="comment-form">
             <div>
               <div class="rating-box">
-                <h2 style="color: rgb(8, 58, 108);">How was your experience?</h2>
+                <h2 style="color: rgb(8, 58, 108)">How was your experience?</h2>
                 <div class="stars">
                   <i class="fa-solid fa-star"></i>
                   <i class="fa-solid fa-star"></i>
@@ -233,8 +237,9 @@
         </div>
       </div>
     </footer>
-    <script src="./index.js" defer></script>
+    <script src="./index.js"></script>
     <script>
+      showLoader();
       const comment = document.getElementById("comment"),
         form = document.getElementById("comment-form");
       const stars = document.querySelectorAll(".stars i");
@@ -250,17 +255,17 @@
               star.classList.remove("active");
             }
           });
-          activeStars =
-            document.querySelectorAll(".stars i.active").length;
+          activeStars = document.querySelectorAll(".stars i.active").length;
           // You can use the value of activeStars as needed
         });
       });
 
       form.addEventListener("submit", (e) => {
-        console.log(activeStars)
+        showLoader();
+        console.log(activeStars);
         e.preventDefault();
-          fetch(
-          `https://backend-mybrand-2y5k.onrender.com/api/v1/comments/post-comment/${projectId}`,
+        fetch(
+          `https://backend-mybrand-xea6.onrender.com/api/v1/comments/post-comment/${projectId}`,
           {
             method: "POST",
             headers: {
@@ -273,31 +278,44 @@
             }),
           }
         )
-        .then((response) => response.json())
-        .then((data) => {
-          activeStars = 0
-          const newComment = document.querySelector(".comment");
-          const commentDiv = document.createElement("div");
-          commentDiv.innerHTML = `
+          .then((response) => response.json())
+          .then((data) => {
+            hideLoader();
+            console.log(data);
+            if (data.status === "Approval") {
+              activeStars = 0;
+              const newComment = document.querySelector(".comment");
+              const commentDiv = document.createElement("div");
+              commentDiv.innerHTML = `
           <h2
           style="color:#023047;
           font-weight:700;
           text-transform:capitalize;
           margin-bottom:2px;" 
-          >${data.data.user.userName}</h2>
-            <p  style="color:#121417">${data.data.comment}</p>
-            <p style="color:#023047">${data.data.rating}</p>
+          >${data.user.userName}</h2>
+            <p  style="color:#121417">${data.comment}</p>
+            <p style="color:#023047">${data.rating}</p>
            `;
-          newComment.appendChild(commentDiv);
-        }).catch((error)=>{
-          console.log(error)
-        })
+              newComment.appendChild(commentDiv);
+            }
+            const newComment = document.querySelector(".comment");
+              const commentDiv = document.createElement("div");
+              commentDiv.innerHTML = `
+          <h2
+          style="color:#023047;
+          font-weight:700;
+          text-transform:capitalize;
+          margin-bottom:2px;" 
+          >Waiting Admin to approval comment</h2>`;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       });
 
       const projectId = new URLSearchParams(window.location.search).get("id");
-      console.log(projectId);
       fetch(
-        `https://backend-mybrand-2y5k.onrender.com/api/v1/project/get-project/${projectId}`,
+        `https://backend-mybrand-xea6.onrender.com/api/v1/project/get-project/${projectId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -307,7 +325,7 @@
       )
         .then((response) => response.json())
         .then((data) => {
-          // Use the project data here
+          hideLoader();
           console.log(data);
           const projectData = document.getElementById("project__details");
           projectData.innerHTML = `
@@ -319,17 +337,24 @@
         })
         .catch((error) => console.error("Error:", error)); // This will log the project ID
 
-        fetch(`https://backend-mybrand-2y5k.onrender.com/api/v1/comments/get-comments`,{
+      fetch(
+        `https://backend-mybrand-xea6.onrender.com/api/v1/comments/get-comment/${projectId}`,
+        {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
           method: "GET",
-        }).then((response) => response.json())
-        .then((data) =>{
-          console.log(data)
-        const newComment = document.querySelector(".comment");
-        data.data.forEach((comment)=>{
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          const commentData = data
+          hideLoader();
+          if(commentData != null && commentData.data.length > 1) {
+          console.log(commentData.data);
+          const newComment = document.querySelector(".comment");
+          commentData.data.forEach((comment) => {
             const commentDiv = document.createElement("div");
             commentDiv.innerHTML = `
           <h2 style="color:#023047;
@@ -341,12 +366,28 @@
             color:#121417">${comment.comment}</p>
             <p style="color:#023047">${comment.rating}</p>
            `;
-           newComment.appendChild(commentDiv);
-          })
-          
-        }).catch((err) =>{
-          console.log(err)
-        })
+            newComment.appendChild(commentDiv);
+          });
+        }else{
+          const newComment = document.querySelector(".comment");
+          const commentDiv = document.createElement("div");
+            commentDiv.innerHTML = `
+          <h2 style="color:#023047;
+          font-weight:700;
+          text-transform:capitalize;
+          margin-bottom:2px;
+          ">${commentData.data.user.userName}</h2>
+            <p style="text-transform:capitalize;
+            color:#121417">${commentData.data.comment}</p>
+            <p style="color:#023047">${commentData.data.rating}</p>
+           `;
+            newComment.appendChild(commentDiv);
+        }
+        }
+        )
+        .catch((err) => {
+          console.log(err);
+        });
     </script>
   </body>
 </html>

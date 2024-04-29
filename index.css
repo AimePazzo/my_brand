@@ -1288,6 +1288,34 @@ button[type="submit"]:hover {
     font-weight: bold;
     z-index: 9999;
   }
+
+  .loading-spinner {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+    z-index: 9999;
+}
+
+.loading-spinner img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.loading-spinner p{
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(3, 120, 46);
+    text-align: center;
+}
   
 
 /* FOOTER */

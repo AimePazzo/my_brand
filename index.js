@@ -24,6 +24,16 @@ const navMenu = document.getElementById("nav-links"),
   projectLink = document.getElementById("project-link"),
   loginButton = document.getElementById("login-button");
 
+  const loaderDiv = document.getElementById('loading-spinner');
+  function showLoader() {
+      loaderDiv.style.display = 'block';
+  }
+
+  function hideLoader() {
+      loaderDiv.style.display = 'none';
+  }
+
+
 
 // MENU SHOW
 if (navToggle) {
@@ -219,7 +229,8 @@ const handleSubmit = async () => {
     message: messageContact.value
   }
   try {
-    const respond = await fetch("https://backend-mybrand-2y5k.onrender.com/api/v1/contact/send-message", {
+    showLoader();
+    const respond = await fetch("https://backend-mybrand-xea6.onrender.com/api/v1/contact/send-message", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -230,18 +241,31 @@ const handleSubmit = async () => {
       const data = await respond.json();
       showToast("❌ " + data.message, "error");
     } else {
-      const data = await respond.json();
-      showToast("Message sent", "success");
+      hideLoader();
+      const sendEmail = await fetch("https://backend-mybrand-xea6.onrender.com/api/v1/email/send-email",{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(contactData)
+      })
+      if (!sendEmail.ok) {
+        const data = await sendEmail.json();
+        showToast("❌ " + data.message, "error");
+      } else {
+      const data = await sendEmail.json();
+      showToast(data.message, "success");
       setTimeout(() => {
         nameContact.value = ''
         emailContact.value = ''
         subjectContact.value = ''
         messageContact.value = ''
         resetErrors()
-        emailjs.sendForm('service_kzutdjf','template_h8w87eq','#contact-form','mbdQfTjlWxjvdh2ij')
-      }, 3000);
+        // emailjs.sendForm('service_kzutdjf','template_h8w87eq','#contact-form','mbdQfTjlWxjvdh2ij',this)
+      }, 300);
     }
-  } catch (error) {
+  }
+ } catch (error) {
     showToast(error.message, "error");
   }
 

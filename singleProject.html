@@ -298,15 +298,17 @@
            `;
               newComment.appendChild(commentDiv);
             }
+            else{
             const newComment = document.querySelector(".comment");
               const commentDiv = document.createElement("div");
               commentDiv.innerHTML = `
           <h2
           style="color:#023047;
-          font-weight:700;
+          font-weight:400;
           text-transform:capitalize;
           margin-bottom:2px;" 
           >Waiting Admin to approval comment</h2>`;
+            }
           })
           .catch((error) => {
             console.log(error);

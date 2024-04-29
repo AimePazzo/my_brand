@@ -339,61 +339,60 @@
         })
         .catch((error) => console.error("Error:", error)); // This will log the project ID
 
-      fetch(
-        `https://backend-mybrand-xea6.onrender.com/api/v1/comments/get-comment/${projectId}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-          method: "GET",
-        }
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          const commentData = data
-          
-          hideLoader();
-          if(projectId == commentData.data[0].project._id) {
-          if(commentData.data.status === "Approval"){
-          if(commentData != null && commentData.data.length > 1) {
-          console.log(commentData.data);
-          const newComment = document.querySelector(".comment");
-          commentData.data.forEach((comment) => {
-            const commentDiv = document.createElement("div");
-            commentDiv.innerHTML = `
-          <h2 style="color:#023047;
-          font-weight:700;
-          text-transform:capitalize;
-          margin-bottom:2px;
-          ">${comment.user.userName}</h2>
+        fetch(
+  `https://backend-mybrand-xea6.onrender.com/api/v1/comments/get-comment/${projectId}`,
+  {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+    method: "GET",
+  }
+)
+  .then((response) => response.json())
+  .then((data) => {
+    hideLoader();
+    if (data && data.data.length > 0) {
+      const newComment = document.querySelector(".comment");
+      data.data.forEach((comment) => {
+        if (
+          comment.status === "Approval" &&
+          comment.project._id === projectId
+        ) {
+          const commentDiv = document.createElement("div");
+          commentDiv.innerHTML = `
+            <h2 style="color:#023047;
+            font-weight:700;
+            text-transform:capitalize;
+            margin-bottom:2px;
+            ">${comment.user.userName}</h2>
             <p style="text-transform:capitalize;
             color:#121417">${comment.comment}</p>
             <p style="color:#023047">${comment.rating}</p>
-           `;
-            newComment.appendChild(commentDiv);
-          });
-        }else{
-          const newComment = document.querySelector(".comment");
-          const commentDiv = document.createElement("div");
-            commentDiv.innerHTML = `
-          <h2 style="color:#023047;
-          font-weight:700;
-          text-transform:capitalize;
-          margin-bottom:2px;
-          ">${commentData.data.user.userName}</h2>
-            <p style="text-transform:capitalize;
-            color:#121417">${commentData.data.comment}</p>
-            <p style="color:#023047">${commentData.data.rating}</p>
-           `;
-            newComment.appendChild(commentDiv);
+          `;
+          newComment.appendChild(commentDiv);
         }
-        }
-      }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      });
+    } else {
+      const newComment = document.querySelector(".comment");
+      const commentDiv = document.createElement("div");
+      commentDiv.innerHTML = `
+        <h2 style="color:#023047;
+        font-weight:700;
+        text-transform:capitalize;
+        margin-bottom:2px;
+        ">${data.data.user.userName}</h2>
+        <p style="text-transform:capitalize;
+        color:#121417">${data.data.comment}</p>
+        <p style="color:#023047">${data.data.rating}</p>
+      `;
+      newComment.appendChild(commentDiv);
+    }
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
     </script>
   </body>
 </html>

@@ -1899,11 +1899,13 @@ body.dark-theme {
 
   .login__container {
     border-radius: 15px;
-    margin-top: 5rem;
-    width: 100%;
+    
+    /* width: 100%; */
     height: 100%;
-    display: grid;
-    grid-template-rows: 300px 400px;
+    gap: 0;
+    display: flex;
+    flex-direction: column-reverse;
+    background-color: red;
     place-items: center;
   }
 
@@ -1947,7 +1949,7 @@ body.dark-theme {
 
   .contact__container {
     display: grid;
-    grid-template-rows: 400px 600px 150px;
+    grid-template-rows: 500px 600px 150px;
     place-items: center;
   }
 

@@ -352,7 +352,9 @@
         .then((response) => response.json())
         .then((data) => {
           const commentData = data
+          
           hideLoader();
+          if(projectId == commentData.data[0].project._id) {
           if(commentData.data.status === "Approval"){
           if(commentData != null && commentData.data.length > 1) {
           console.log(commentData.data);
@@ -387,6 +389,7 @@
             newComment.appendChild(commentDiv);
         }
         }
+      }
         })
         .catch((err) => {
           console.log(err);

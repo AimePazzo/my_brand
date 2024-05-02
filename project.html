@@ -251,8 +251,18 @@
           });
         }
       }
-
-      GetProjects();
+      function authorized(){
+        showLoader();
+        if(localStorage.getItem("token")){
+          GetProjects();
+        }else{
+          hideLoader();
+          window.location.href = "./login.html";
+        }
+      }
+      document.addEventListener('DOMContentLoaded',
+        authorized()
+      )
     </script>
   </body>
 </html>

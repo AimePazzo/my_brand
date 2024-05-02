@@ -19,14 +19,7 @@
       href="https://fonts.googleapis.com/css2?family=Actor&family=Koulen&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
-    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="index.css" />
     <title>My Portfolio - Contact</title>
   </head>
@@ -127,9 +120,9 @@
       </div>
     </header>
     <div class="loading-spinner" id="loading-spinner">
-      <img src="./img/Settings.gif" alt="Loading Spinner">
+      <img src="./img/Settings.gif" alt="Loading Spinner" />
       <p>Please wait....</p>
-  </div>
+    </div>
     <main class="container">
       <div class="contact">
         <div class="contact__container">
@@ -165,7 +158,6 @@
                       type="text"
                       name="user_name"
                       class="contact__input"
-                      
                       id="name"
                       placeholder="Enter User Name"
                     />
@@ -173,13 +165,12 @@
                     <br />
                     <div class="error"></div>
                   </div>
-  
+
                   <div class="contact__box">
                     <input
                       type="text"
                       name="user_email"
                       class="contact__input"
-                      
                       id="email"
                       placeholder="Email Address"
                     />
@@ -197,7 +188,6 @@
                     class="contact__input"
                     id="subject"
                     placeholder="Subject"
-                    
                   />
                   <label for="subject" class="contact__label">Subject</label>
                   <br />
@@ -208,7 +198,6 @@
                     name="user_message"
                     id="message"
                     class="contact__input"
-                    
                     placeholder="Message"
                   ></textarea>
                   <label for="Message" class="contact__label">Message</label>
@@ -288,59 +277,52 @@
         </div>
       </div>
     </main>
-      <footer class="footer">
-        <div class="footers">
-          <div class="footer__icon">
-            <a href="https://github.com/AimePazzo"
-              ><i class="ri-github-line"></i
-            ></a>
-            <a href="https://twitter.com/Amie_patric17"
-              ><i class="ri-twitter-line"></i
-            ></a>
-            <a href="www.linkedin.com/in/ndagijimana-patrick-393ba5226"
-              ><i class="ri-linkedin-box-line"></i
-            ></a>
-            <a href="https://www.instagram.com/aimepatrick134/"
-              ><i class="ri-instagram-line"></i
-            ></a>
-          </div>
-          <div class="footer__rights">
-            <p>&copy; All Rights Reserved By Aime Patrick</p>
-          </div>
+    <footer class="footer">
+      <div class="footers">
+        <div class="footer__icon">
+          <a href="https://github.com/AimePazzo"
+            ><i class="ri-github-line"></i
+          ></a>
+          <a href="https://twitter.com/Amie_patric17"
+            ><i class="ri-twitter-line"></i
+          ></a>
+          <a href="www.linkedin.com/in/ndagijimana-patrick-393ba5226"
+            ><i class="ri-linkedin-box-line"></i
+          ></a>
+          <a href="https://www.instagram.com/aimepatrick134/"
+            ><i class="ri-instagram-line"></i
+          ></a>
         </div>
-      </footer>
-    <script src="index.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
-    ></script>
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+        <div class="footer__rights">
+          <p>&copy; All Rights Reserved By Aime Patrick</p>
+        </div>
+      </div>
+    </footer>
+    <script src="index.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       AOS.init({
         once: true,
       });
     </script>
-    
     <script>
       const contactForm = document.getElementById("contact-form");
-      contactForm.addEventListener("submit",(e)=>{
+      contactForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        handleSubmit()
+        handleSubmit();
       });
       function checkForErrorAndRemove(input) {
         const parentGroup = input.closest(".contact__box");
-        
+
         if (!parentGroup) return; // No parent group found, exit
 
         const errorClass = parentGroup.classList.contains("error")
           ? "error"
           : "errors";
-        
+
         const elementsWithErrors = parentGroup.querySelectorAll(
           "." + errorClass
         );
-        
 
         parentGroup.classList.remove(errorClass);
         elementsWithErrors.forEach((element) => {
@@ -348,9 +330,11 @@
         });
       }
       contactForm.addEventListener("input", (event) => {
-        
         const target = event.target;
-        if (target.tagName === "INPUT" || target.tagName ==='TEXTAREA'  && target.closest(".contact__main")) {
+        if (
+          target.tagName === "INPUT" ||
+          (target.tagName === "TEXTAREA" && target.closest(".contact__main"))
+        ) {
           checkForErrorAndRemove(target);
         }
       });

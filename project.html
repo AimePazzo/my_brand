@@ -184,7 +184,6 @@
         if (response.ok) {
           hideLoader()
           const data = await response.json();
-          console.log(data);
 
           const project = document.getElementById("projects-content");
           project.innerHTML = "";

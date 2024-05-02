@@ -340,11 +340,10 @@
       </div>
     </footer>
     <script src="index.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-      // Initialize AOS with options
       AOS.init({
-        once: true, // Trigger animations only once
+        once: true,
       });
     </script>
     <script>
@@ -615,7 +614,6 @@
         const elementsWithErrors = parentGroup.querySelectorAll(
           "." + errorClass
         );
-        console.log(elementsWithErrors)
 
 
         parentGroup.classList.remove(errorClass);

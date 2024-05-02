@@ -283,7 +283,6 @@
           .then((data) => {
             comment.value = ""
             hideLoader();
-            console.log(data);
             if (data.status === "Approval") {
               activeStars = 0;
               const newComment = document.querySelector(".comment");
@@ -330,7 +329,6 @@
         .then((response) => response.json())
         .then((data) => {
           hideLoader();
-          console.log(data);
           const projectData = document.getElementById("project__details");
           projectData.innerHTML = `
           <img src="${data.images[0].url}" alt="Project Image" />
@@ -353,6 +351,7 @@
 )
   .then((response) => response.json())
   .then((data) => {
+    console.log(data);
     hideLoader();
     if (data && data.data && data.data.length > 0) {
       const newComment = document.querySelector(".comment");
@@ -375,20 +374,6 @@
           newComment.appendChild(commentDiv);
         }
       });
-    } else if (data && data.data && data.data.length === 0) {
-      const newComment = document.querySelector(".comment");
-      const commentDiv = document.createElement("div");
-      commentDiv.innerHTML = `
-        <h2 style="color:#023047;
-        font-weight:700;
-        text-transform:capitalize;
-        margin-bottom:2px;
-        ">${data.data.user.userName}</h2>
-        <p style="text-transform:capitalize;
-        color:#121417">${data.data.comment}</p>
-        <p style="color:#023047">${data.data.rating}</p>
-      `;
-      newComment.appendChild(commentDiv);
     }
   })
   .catch((err) => {
@@ -399,8 +384,6 @@
           window.location.href = "./login.html";
         }
       })
-     
-
     </script>
   </body>
 </html>

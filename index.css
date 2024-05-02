@@ -97,9 +97,7 @@ nav li {
 .login__active {
   background-color: var(--dark-text-color) !important;
 }
-#login__link {
-  /* color: var(--dark-text-color)!important; */
-}
+
 li button {
   padding: 0 6px;
   background-color: var(--text-hover-button);
